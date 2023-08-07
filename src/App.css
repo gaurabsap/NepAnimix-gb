@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Edu+SA+Beginner&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700&display=swap");
+
+body {
+  background-color: rgb(22, 22, 22);
+  /* background-color: black; */
+  color: white;
+  font-family: "poppins";
+}
+/* font-family: 'Bebas Neue', sans-serif;
+font-family: 'Edu SA Beginner', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+.effect {
+  /* background: linear-gradient(20deg, rgba(4, 21, 45, 0) 100%, rgb(44, 42, 42));
+  filter: blur(10px); */
+  background-color: rgb(20, 19, 19);
+  /* background-color: rgba(0, 0, 0, 0.877); */
+  z-index: -1;
+}
+
+.classna {
+  border: 2px solid green;
+}
+
+.gradient {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+/* .blurs {
+  filter: blur(10px);
+} */
+
+.background {
+  /* background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4)
+  ); */
+
+  /* background: linear-gradient(90deg, rgba(5, 6, 8, 0) 0%, #021735); */
+  background: linear-gradient(80deg, rgba(4, 32, 71, 0) 20%, black);
+  z-index: -999999;
+}
+
+.small {
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  background-color: rgb(10, 10, 10);
+  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), black); */
+  filter: blur(35px);
+}
+
+@media screen and (max-width: 768px) {
+  .small {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)),
+    url("./assets//bg.jpg");
+  background-position: top;
+  background-size: cover;
+}
+
+.cur {
+  font-family: "Bebas Neue", sans-serif;
+
+  text-transform: uppercase;
+}
+/* Your other styles */
+
+.show {
+  opacity: 0;
+  /* transform: translateY(-50%) translateX(-50%);
+  transition: opacity 0.3s ease-in-out; */
+}
+
+.img {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+}
+.image {
+  transition: all 0.5s;
+}
+.img:hover > .image {
+  transition: all 0.5s;
+  transform: scale(1.01);
+  opacity: 0.3;
+}
+
+.img:hover > .image .show {
+  opacity: 1;
+}
+
+.img:hover > .show {
+  opacity: 1;
+}
+
+.radius {
+  border-radius: 0px 0px 10px 10px;
+}

@@ -1,0 +1,10 @@
+// style={{
+                        //   backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 35%, transparent 65%), url(${bannerImage})`,
+                        //   backgroundPosition: "center",
+                        //   backgroundSize: "cover",
+                        //   width: "60%",
+                        // }}
+                        // style={{
+                        //   backgroundImage:
+                        //     "linear-gradient(to right, rgba(0, 0, 0, 0.8) 35%, transparent 65%",
+                        // }}
