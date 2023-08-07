@@ -125,24 +125,19 @@ const Search = () => {
         return [...prev, e];
       }
     });
-
+    let genresQuery = JSON.stringify(genre);
+    console.log(genresQuery);
     setQuery((prevQuery) => {
-      let updatedGenresQuery;
       if (prevQuery.includes("&genres=")) {
-        updatedGenresQuery = prevQuery.replace(
+        return prevQuery.replace(
           /&genres=\[[^\]]*\]/,
           `&genres=${JSON.stringify(genre)}`
         );
       } else {
-        updatedGenresQuery = `${prevQuery}&genres=${JSON.stringify(genre)}`;
+        return `&genres=${JSON.stringify(genre)}`;
       }
-
-      console.log(updatedGenresQuery); // Log the updated query
-
-      return updatedGenresQuery;
     });
   };
-
   return (
     <div className={`absolute top-0 left-0 w-full bg-black z-50 h-screen`}>
       <div className="p-5">
