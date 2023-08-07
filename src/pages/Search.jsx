@@ -5,7 +5,7 @@ import { filter } from "./utils/Filter";
 import { Context } from "./context/Context";
 import AdvanceCard from "./card/AdvanceCard";
 const Search = () => {
-  const { searchdata, setQuery, query } = useContext(Context);
+  const { load, searchdata, setQuery, query } = useContext(Context);
   // console.log(query);
   // console.log(searchdata && searchdata.data.results);
 
@@ -150,19 +150,6 @@ const Search = () => {
               setSearch(e.target.value);
               if (search.length < 0) {
                 setAdvanceSearch(true);
-                // setSearch(e.target.value);
-                // setQuery((prevQuery) => {
-                //   if (search.length > 2) {
-                //     if (prevQuery.includes("&query=")) {
-                //       return prevQuery.replace(
-                //         /&query=[^&]+/,
-                //         `&query=${e.target.value}`
-                //       );
-                //     } else {
-                //       return `${prevQuery}&query=${e.target.value}`;
-                //     }
-                //   }
-                // });
               }
               setAdvanceSearch(false);
             }}
@@ -264,7 +251,7 @@ const Search = () => {
         </div>
       ) : null}
       {advancesearch ? (
-        <AdvanceCard data={anime && anime} load={loading} />
+        <AdvanceCard data={anime && anime} load={load} />
       ) : (
         <SearchCard data={anime && anime} load={loading} />
       )}

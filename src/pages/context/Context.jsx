@@ -3,7 +3,7 @@ import { FetchData } from "./Api";
 export const Context = createContext();
 
 export const ContextApi = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  const [load, setLoad] = useState(false);
   const [searchdata, setSearchData] = useState([]);
   const [query, setQuery] = useState("type=ANIME");
   // console.log(query);
@@ -13,15 +13,15 @@ export const ContextApi = ({ children }) => {
 
   const FetchDataFromApi = async (q) => {
     try {
-      setLoading(true);
+      setLoad(true);
       const data = await FetchData(q);
       console.log(query && query);
       // console.log(searchdata && searchdata.results);
       setSearchData(data.data);
-      setLoading(false);
+      setLoad(false);
     } catch (error) {
       console.log(error.message);
-      setLoading(false);
+      setLoad(false);
     }
   };
 
@@ -31,6 +31,8 @@ export const ContextApi = ({ children }) => {
         searchdata,
         setQuery,
         query,
+        load,
+        setLoad,
       }}
     >
       {children}
