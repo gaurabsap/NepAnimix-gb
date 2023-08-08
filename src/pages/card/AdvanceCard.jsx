@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from "../Skeleton";
-// import notfound from "../assets/not.png";
+import notfound from "../../assets/not.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 const AdvanceCard = ({ data, load }) => {
@@ -72,7 +72,7 @@ const AdvanceCard = ({ data, load }) => {
                   <div className="w-full flex flex-col gap-2 h-[30%] p-2 bg-blue-800 radius">
                     <div>
                       <h1 className="truncate font-bold lg:text-[15px] text-[12px]">
-                        {title.english}
+                        {title.english ? title.english : "No name"}
                       </h1>
                     </div>
                     <div className="flex items-end gap-2">
@@ -80,7 +80,7 @@ const AdvanceCard = ({ data, load }) => {
                         {status}
                       </p>
                       <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
-                        {releaseDate}
+                        {releaseDate ? releaseDate : "no"}
                       </p>
 
                       <p className="hidden md:flex px-3 py-1 border rounded-md md:text-[11px] text-[5px]">
@@ -88,7 +88,7 @@ const AdvanceCard = ({ data, load }) => {
                       </p>
                     </div>
                     <div className="flex gap-1 text-[13px] truncate">
-                      {dat.genres?.slice(0, 3).map((dat, i) => (
+                      {dat.genres?.slice(0, 2).map((dat, i) => (
                         <p
                           key={i}
                           className="text-yellow-500 text-[10px] md:text-[15px]"

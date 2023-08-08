@@ -174,18 +174,18 @@ const Search = () => {
         </div>
       </div>
       {showfilter ? (
-        <div className="flex flex-col gap-6 items-start px-12 py-2">
+        <div className="flex flex-col gap-6  lg:px-12 lg:py-2 items-start p-2">
           <h1 className="text-xl md:text-2xl text-red-500">Filter search</h1>
           <div className="flex gap-5">
-            <div className="flex gap-5">
-              <h1 className="text-yellow-500">Season : </h1>
+            <div className="flex lg:flex-row flex-col gap-5">
               <div className="flex gap-2">
+                <h1 className="text-yellow-500">Season : </h1>
                 {filter.season.map((dat, i) => {
                   return (
                     <p
                       key={i}
                       onClick={() => Season(dat.seas)}
-                      className={`border-2 px-3 cursor-pointer rounded-lg ${
+                      className={`border-2 lg:px-3 lg:py-1 md:px-2 px-2 text-[12px] md:text-[15px] cursor-pointer rounded-lg ${
                         selectedSeason === dat.seas ? "bg-red-500 border-0" : ""
                       }`}
                     >
@@ -194,15 +194,15 @@ const Search = () => {
                   );
                 })}
               </div>
-              <div className="flex gap-5">
-                <h1 className="text-yellow-500">Status : </h1>
-                <div className="flex gap-2">
+              <div className="flex items-center wrap gap-5">
+                <h1 className="text-yellow-500">Status:</h1>
+                <div className="flex wrap items-center gap-2">
                   {filter.status.map((dat, i) => {
                     return (
                       <p
                         key={i}
                         onClick={() => Status(dat.stat)}
-                        className={`border-2 px-3 cursor-pointer rounded-lg ${
+                        className={`border-2 lg:px-3 text-[12px] md:text-[15px] md:px-2 px-1 py-1 cursor-pointer rounded-lg ${
                           selectedstatus === dat.stat
                             ? "bg-red-500 border-0"
                             : ""
@@ -219,14 +219,14 @@ const Search = () => {
 
           <div className="flex gap-5">
             <div className="flex gap-5">
-              <h1 className="text-yellow-500">Type : </h1>
+              <h1 className="text-yellow-500">Type:</h1>
               <div className="flex gap-2">
                 {filter.type.map((dat, i) => {
                   return (
                     <p
                       key={i}
                       onClick={() => Types(dat.types)}
-                      className={`border-2 px-3 cursor-pointer rounded-lg ${
+                      className={`border-2 lg:px-3 px-1 text-[12px] md:text-[15px] cursor-pointer rounded-lg ${
                         selectedtype === dat.types ? "bg-red-500 border-0" : ""
                       }`}
                     >
@@ -247,7 +247,7 @@ const Search = () => {
                     onClick={() => {
                       Genre(dat.name);
                     }}
-                    className={`border-2 px-3 cursor-pointer rounded-lg ${
+                    className={`border-2 px-3 text-[12px] md:text-[15px] cursor-pointer rounded-lg ${
                       genre?.includes(dat.name) ? "bg-red-500 border-0" : ""
                     }`}
                   >

@@ -1,7 +1,8 @@
 import React from "react";
 import Skeleton from "./Skeleton";
 import notfound from "../assets/not.png";
-import { BsFillPlayCircleFill } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsPlusCircleFill } from "react-icons/bs";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 const SearchCard = ({ data, load }) => {
   const navigate = useNavigate();
@@ -82,13 +83,17 @@ const SearchCard = ({ data, load }) => {
                         Ep{currentEpisode}
                       </p>
                     </div>
-                    <div className="flex gap-1 text-[13px] truncate">
-                      {dat.genre?.slice(0, 3).map((dat) => (
+                    <div className="flex items-center  gap-1 text-[13px] truncate relative">
+                      {dat.genre?.slice(0, 2).map((dat) => (
                         <p className="text-yellow-500 text-[10px] md:text-[15px]">
                           {dat},{" "}
                         </p>
                       ))}
                     </div>
+                    <BsPlusCircleFill
+                      title="Add to list"
+                      className="cursor-pointer lg:text-3xl text-red-400 text-xl"
+                    />
                   </div>
                 </div>
               </>

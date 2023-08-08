@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Nav from "./Nav";
 
 const Watch = () => {
   const { id } = useParams();
@@ -12,11 +13,14 @@ const Watch = () => {
     CallApi();
   }, [id]);
   return (
-    <div>
-      <div>
-        <h1>{id}</h1>
+    <>
+      <Nav />
+      <div className="">
+        <div>
+          <h1>{id}</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
