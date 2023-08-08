@@ -138,6 +138,17 @@ const Search = () => {
       }
     });
   };
+  useEffect(() => {
+    setQuery((prevQuery) => {
+      let updatedQuery = prevQuery.replace(/&genres=\[[^\]]*\]/, "");
+
+      if (genre.length > 0) {
+        updatedQuery += `&genres=${JSON.stringify(genre)}`;
+      }
+
+      return updatedQuery;
+    });
+  }, [genre]);
   return (
     <div className={`absolute top-0 left-0 w-full bg-black z-50 h-screen`}>
       <div className="p-5">
@@ -237,9 +248,7 @@ const Search = () => {
                       Genre(dat.name);
                     }}
                     className={`border-2 px-3 cursor-pointer rounded-lg ${
-                      selectedgenre.includes(dat.name)
-                        ? "bg-red-500 border-0"
-                        : ""
+                      genre?.includes(dat.name) ? "bg-red-500 border-0" : ""
                     }`}
                   >
                     {dat.name}
