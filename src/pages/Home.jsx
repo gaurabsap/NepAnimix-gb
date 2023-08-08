@@ -170,13 +170,7 @@ const Home = () => {
                           //     "linear-gradient(360deg, rgba(4, 21, 45, 0) 0%, #04152d 100%)",
                           // }}
                         ></div>
-                        {/* <div
-                          className="w-[40%] h-screen absolute left-0"
-                          style={{
-                            background:
-                              "linear-gradient(rgba(0,0,0,0.2), 50%, rgba(0,0,0,0.5))",
-                          }}
-                        ></div> */}
+
                         <div className="h-full w-[35%] absolute top-0 left-0 background"></div>
                       </div>
                     </SwiperSlide>
