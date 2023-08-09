@@ -127,16 +127,16 @@ const Search = () => {
     });
     let genresQuery = JSON.stringify(genre);
     console.log(genresQuery);
-    setQuery((prevQuery) => {
-      if (prevQuery.includes("&genres=")) {
-        return prevQuery.replace(
-          /&genres=\[[^\]]*\]/,
-          `&genres=${JSON.stringify(genre)}`
-        );
-      } else {
-        return `&genres=${JSON.stringify(genre)}`;
-      }
-    });
+    // setQuery((prevQuery) => {
+    //   if (prevQuery.includes("&genres=")) {
+    //     return prevQuery.replace(
+    //       /&genres=\[[^\]]*\]/,
+    //       `&genres=${JSON.stringify(genre)}`
+    //     );
+    //   } else {
+    //     return `&genres=${JSON.stringify(genre)}`;
+    //   }
+    // });
   };
   useEffect(() => {
     setQuery((prevQuery) => {
