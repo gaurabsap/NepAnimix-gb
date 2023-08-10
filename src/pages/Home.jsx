@@ -20,6 +20,7 @@ import "swiper/css";
 import { AiFillPlayCircle, AiOutlinePlus } from "react-icons/ai";
 import Nav from "./Nav";
 import Recent from "./Recent";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState([]);
@@ -46,7 +47,10 @@ const Home = () => {
     };
     return date.toLocaleDateString("en-US", options);
   };
-
+  const navigate = useNavigate();
+  const HandleWatch = (id) => {
+    navigate(`/watch/${id}`);
+  };
   return (
     <>
       {/* <Nav /> */}
@@ -128,7 +132,10 @@ const Home = () => {
                           </p>
                           <p>Next episode on : {formatNextEpisode(next)}</p>
                           <div className="flex items-center gap-5">
-                            <button className="bg-slate-100 p-2 rounded-md flex items-center gap-1 text-black">
+                            <button
+                              onClick={() => HandleWatch(id)}
+                              className="bg-slate-100 p-2 rounded-md flex items-center gap-1 text-black"
+                            >
                               <AiFillPlayCircle size={20} /> Watch now
                             </button>
                             <button className="border flex items-center gap-1 p-2 rounded-md">

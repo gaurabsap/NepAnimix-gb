@@ -1,5 +1,11 @@
-export default Date = (timestamp) => {
-  const date = new Date(timestamp * 1000); // Convert the timestamp to milliseconds
-  const options = { year: "numeric", month: "long", day: "numeric" };
+export const Date = (isoDate) => {
+  const date = new Date(isoDate);
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
   return date.toLocaleDateString("en-US", options);
 };

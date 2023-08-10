@@ -12,6 +12,7 @@ import {
   BsInstagram,
   BsTwitter,
 } from "react-icons/bs";
+
 const Watch = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -27,6 +28,17 @@ const Watch = () => {
     };
     CallApi();
   }, [id]);
+  const Dates = (isoDate) => {
+    const date = new Date(isoDate);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
+  };
   return (
     <>
       <Nav />
@@ -60,7 +72,7 @@ const Watch = () => {
                   style={{
                     backgroundImage: `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9), rgba(0,0,0,0.99)), url(${bannerImage})`,
                   }}
-                  className="bg-cover w-screen h-screen flex lg:flex-row flex-col gap-10 lg:items-center lg:justify-between justify-center px-10 md:py-10 py-5 lg:pr-0"
+                  className="bg-cover w-screen h-screen flex lg:flex-row flex-col gap-12 lg:items-center lg:justify-between justify-center px-10 md:py-10 py-5 lg:pr-0"
                 >
                   <div className="flex md:gap-10 flex-1 gap-8 justify-center">
                     <img
@@ -120,7 +132,33 @@ const Watch = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="lg:h-screen md:w-full md:h-[350px] lg:w-[400px] h-[40vh] trans rounded-lg"></div>
+                  <div className="lg:h-screen md:w-full md:h-[350px] lg:w-[400px] h-[40vh] trans rounded-lg flex flex-col justify-center items-center px-4">
+                    <div className="flex flex-col gap-5">
+                      <h1>Native : {title.native}</h1>
+                      <p>Season: {season}</p>
+                      <p>Aired at: {Dates(createdAt)}</p>
+                      <p>Current Ep: {currentEpisode}</p>
+                      <p>Synonyms: {synonyms}</p>
+                      <div className="flex flex-col gap-10">
+                        <p className="w-full h-[1px] bg-white"></p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {genre.map((gen, i) => {
+                            return (
+                              <p
+                                className="cursor-pointer px-2 py-1 border rounded-lg"
+                                key={i}
+                              >
+                                {gen},{" "}
+                              </p>
+                            );
+                          })}
+                        </div>
+                        <p className="w-full h-[1px] bg-white"></p>
+                      </div>
+                      <p>Next episodes on : {Dates(next)}</p>
+                      <p>Duration: {duration}m</p>
+                    </div>
+                  </div>
                 </div>
               </>
             );
