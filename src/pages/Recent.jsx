@@ -15,7 +15,7 @@ const Recent = () => {
           "https://api.enime.moe/recent?perPage=10&language=JP"
         );
         setAnime(resq.data.data);
-        console.log(resq);
+        // console.log(resq);
         setLoading(false);
       } catch (error) {
         console.log(error.message);

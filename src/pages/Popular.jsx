@@ -15,7 +15,7 @@ const Popular = () => {
         const resq = await axios.get(
           "https://api.enime.moe/popular?perPage=15"
         );
-        // console.log(resq);
+        console.log(resq);
         setAnime(resq.data.data);
         setLoading(false);
       } catch (error) {

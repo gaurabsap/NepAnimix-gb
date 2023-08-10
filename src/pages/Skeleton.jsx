@@ -7,7 +7,7 @@ const Skeleton = () => {
       <div className="flex flex-wrap md:justify-center gap-5 w-full">
         {arr.map((dat) => {
           return (
-            <div className="lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] h-[300px] flex flex-col gap-1 p-2 overflow-hidden animate-pulse">
+            <div className="lg:w-[18%] w-[45%] md:w-[30%] md:h-[450px] h-[300px] flex flex-col gap-1 p-2 overflow-hidden animate-pulse">
               <div className="w-full bg-gray-900 h-[60%] rounded-lg"></div>
               <div className="bg-blue-900 radius w-full h-[30%] "></div>
             </div>

@@ -6,13 +6,15 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { FaPlay } from "react-icons/fa";
 import { AnimeContext, AnimeVideo } from "./context/AnimeContext";
-
+import loading from "../assets/loading.gif";
 import ReactPlayer from "react-player";
 const Watch = () => {
-  const { setImages, images, setId, video } = useContext(AnimeContext);
+  const { setImages, images, setId, video, load, setLoad } =
+    useContext(AnimeContext);
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [showvideo, setShowVideo] = useState(false);
+  //   const [loading, setLoading] = useState(false);
   console.log(video);
   useEffect(() => {
     const CallApi = async () => {
@@ -33,10 +35,12 @@ const Watch = () => {
     setImages(img);
   };
   useEffect(() => {
+    setLoad(true);
     if (data.length > 0) {
       setImages(data[0]?.episodes[0]?.image);
       setId(data[0]?.episodes[0]?.sources[0].target);
       console.log(data[0]?.episodes[0]?.sources[0].target);
+      setLoad(false);
     }
   }, [data]);
   return (
@@ -88,7 +92,18 @@ const Watch = () => {
                         </h1>
                       )}
                     </div>
-                    <div className="lg:flex-1 w-full h-4/5 bg-blue-950 rounded-lg relative">
+                    <div className="lg:flex-1 w-full h-4/5 bg-blue-950 rounded-lg relative overflow-hidden">
+                      {load ? (
+                        <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse relative">
+                          <img
+                            className="center w-[8%]"
+                            src={loading}
+                            alt="loading"
+                          />
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       {!showvideo ? (
                         <div className="w-full h-full">
                           <img
@@ -96,6 +111,15 @@ const Watch = () => {
                             src={images}
                             alt=""
                           />
+                          {/* {!load && !showvideo ? (
+                            <FaPlay
+                              onClick={() => setShowVideo(true)}
+                              className="center cursor-pointer"
+                              size={50}
+                            />
+                          ) : (
+                            ""
+                          )} */}
                           <FaPlay
                             onClick={() => setShowVideo(true)}
                             className="center cursor-pointer"
