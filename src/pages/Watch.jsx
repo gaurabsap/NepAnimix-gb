@@ -71,6 +71,7 @@ const Watch = () => {
                         episodes.map((dat, i) => {
                           const { number, sources, title, image } = dat;
                           //   setImages(image);
+                          console.log(episodes.length);
                           return (
                             <div
                               key={i}
@@ -79,10 +80,16 @@ const Watch = () => {
                               }
                               className="flex items-center justify-between gap-2 bg-blue-800 w-full p-2"
                             >
-                              <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
-                                {i + 1}. {title}
-                              </p>
-                              <AiFillPlayCircle size={20} />
+                              {episodes.length < 24 ? (
+                                <div className="flex items-center justify-between w-full">
+                                  <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
+                                    {i + 1}. {title}
+                                  </p>
+                                  <AiFillPlayCircle size={20} />
+                                </div>
+                              ) : (
+                                <p>{number}</p>
+                              )}
                             </div>
                           );
                         })
