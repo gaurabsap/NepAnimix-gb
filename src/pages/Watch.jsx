@@ -43,16 +43,16 @@ const Watch = () => {
                   <div className="flex lg:flex-row flex-col-reverse items-center  gap-5 w-full h-[90vh] p-3">
                     <div className="lg:w-[25%] h-4/5 w-full flex flex-col gap-3 bg-blue-950 rounded-lg p-2 overflow-y-auto">
                       {episodes?.map((dat, i) => {
-                        // console.log(typeof dat);
-                        // const { number, sources, title } = dat;
-                        // return (
-                        //   <p
-                        //     key={i}
-                        //     className=" flex items-center gap-2 w-full p-2 bg-blue-800 rounded-lg cursor-pointer"
-                        //   >
-                        //     <AiFillPlayCircle /> {title}
-                        //   </p>
-                        // );
+                        console.log(typeof dat);
+                        const { number, sources, title } = dat;
+                        return (
+                          <p
+                            key={i}
+                            className=" flex items-center gap-2 w-full p-2 bg-blue-800 rounded-lg cursor-pointer"
+                          >
+                            <AiFillPlayCircle /> {title}
+                          </p>
+                        );
                       })}
                     </div>
                     <div className="lg:flex-1 w-full h-4/5 bg-blue-950 rounded-lg"></div>

@@ -9,22 +9,3 @@ export const Date = (isoDate) => {
   };
   return date.toLocaleDateString("en-US", options);
 };
-
-
-const episodes = {
-  ep: {
-    [
-      {
-        id: 1,
-        "name": "hawa"
-      }
-    ],
-    [
-      {
-        id: 1,
-        "name": "hawa"
-      }
-    ]
-  }
-  
-}
