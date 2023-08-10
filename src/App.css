@@ -112,3 +112,10 @@ font-family: 'Roboto', sans-serif; */
 .trans {
   background-color: rgba(0, 0, 0, 0.507);
 }
+
+.center {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}

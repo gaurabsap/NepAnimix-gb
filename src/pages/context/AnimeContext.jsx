@@ -5,15 +5,18 @@ export const AnimeContext = createContext();
 
 export const AnimeVideo = ({ children }) => {
   const [id, setId] = useState();
-  const [load, setLoad] = useState();
+  //   const [load, setLoad] = useState();
+  const [images, setImages] = useState("");
   const [video, setVideo] = useState([]);
+  //   console.log(images);
   useEffect(() => {
     const CallApi = async () => {
       try {
-        const resq = axios.get(
-          `https://api.consumet.org/anime/gogoanime/watch/${id}`
+        const resq = await axios.get(
+          `https://api.consumet.org/anime/gogoanime/watch${id}`
         );
-        setVideo(resq);
+        setVideo([resq.data]);
+        console.log(resq);
       } catch (error) {
         console.log(error);
       }
@@ -23,8 +26,10 @@ export const AnimeVideo = ({ children }) => {
   return (
     <AnimeContext.Provider
       value={{
-        setLoad,
-        setLoad,
+        setImages,
+        images,
+        setId,
+        video,
       }}
     >
       {children}
