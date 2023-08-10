@@ -8,6 +8,7 @@ import { FaPlay } from "react-icons/fa";
 import { AnimeContext, AnimeVideo } from "./context/AnimeContext";
 import loading from "../assets/loading.gif";
 import ReactPlayer from "react-player";
+import Video from "./Video";
 const Watch = () => {
   const { setImages, images, setId, video, load, setLoad } =
     useContext(AnimeContext);
@@ -135,13 +136,25 @@ const Watch = () => {
                         </div>
                       ) : video.length > 0 ? (
                         video.map((dat) => {
-                          // console.log(dat);
+                          console.log(dat);
                           return (
-                            <ReactPlayer
-                              url={dat?.sources[4]?.url}
-                              controls
-                              width="100%"
-                              height="100%"
+                            // <ReactPlayer
+                            //   url={dat?.sources[4]?.url}
+                            //   controls
+                            //   width="100%"
+                            //   height="100%"
+                            // />
+                            <Video
+                              key={dat.sources[0]} // Add a unique key here
+                              videoUrls={[
+                                { url: dat.sources[0].url, quality: "144px" },
+                                { url: dat.sources[1].url, quality: "360px" },
+                                { url: dat.sources[2].url, quality: "720px" },
+                                { url: dat.sources[3].url, quality: "1080px" },
+                                { url: dat.sources[4].url, quality: "Auto" },
+                                // ... (add more qualities and URLs)
+                              ]}
+                              photo={images}
                             />
                             //   <h1>hi</h1>
                           );
