@@ -27,7 +27,7 @@ const Recent = () => {
   const navigate = useNavigate();
 
   const AnimeDetails = (id) => {
-    navigate(`/watch/${id}`);
+    navigate(`/details/${id}`);
   };
 
   return (

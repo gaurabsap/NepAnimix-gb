@@ -49,7 +49,7 @@ const Home = () => {
   };
   const navigate = useNavigate();
   const HandleWatch = (id) => {
-    navigate(`/watch/${id}`);
+    navigate(`/details/${id}`);
   };
   return (
     <>

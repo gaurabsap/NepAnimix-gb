@@ -8,7 +8,7 @@ const SearchCard = ({ data, load }) => {
   const navigate = useNavigate();
   // console.log(data);
   const AnimeDetails = (id) => {
-    navigate(`/watch/${id}`);
+    navigate(`/details/${id}`);
   };
   return (
     <>

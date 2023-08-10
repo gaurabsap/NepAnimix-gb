@@ -15,7 +15,7 @@ export const ContextApi = ({ children }) => {
     try {
       setLoad(true);
       const data = await FetchData(q);
-      console.log(query && query);
+      // console.log(query && query);
       // console.log(searchdata && searchdata.results);
       setSearchData(data.data);
       setLoad(false);
