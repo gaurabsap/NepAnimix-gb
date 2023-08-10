@@ -52,7 +52,7 @@ const Recent = () => {
                 <div className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] sm:h-[250px] flex flex-col gap-1 p-2 overflow-hidden">
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
-                    onClick={() => AnimeDetails(id)}
+                    onClick={() => AnimeDetails(anime.slug)}
                   >
                     <img
                       className="object-cover object-center w-full h-full rounded-md image"

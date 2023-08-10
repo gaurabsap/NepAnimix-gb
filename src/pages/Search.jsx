@@ -19,7 +19,7 @@ const Search = () => {
   const [selectedstatus, setSelectedStatus] = useState(null);
   const [selectedtype, setSelectedType] = useState(null);
   const [selectedgenre, setSelectedGenre] = useState([]);
-
+  console.log(advancesearch);
   const [genre, setGenre] = useState([]);
   // console.log(genre);
 
@@ -27,6 +27,7 @@ const Search = () => {
     // console.log(searchdata);
     if (advancesearch) {
       setAnime(searchdata.results);
+      // setShowFilter(true);
     }
   }, [searchdata]);
   useEffect(() => {

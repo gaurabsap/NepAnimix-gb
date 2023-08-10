@@ -5,9 +5,9 @@ import { BsFillPlayCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 const AdvanceCard = ({ data, load }) => {
   const navigate = useNavigate();
-  // console.log(data);
+  console.log(data);
   const AnimeDetails = (id) => {
-    navigate(`/watch/${id}`);
+    navigate(`/anime/${id}`);
   };
   return (
     <>
@@ -32,6 +32,8 @@ const AdvanceCard = ({ data, load }) => {
               image,
               releaseDate,
               rating,
+              anime,
+              malId,
             } = dat;
             return (
               <>
@@ -41,7 +43,7 @@ const AdvanceCard = ({ data, load }) => {
                 >
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
-                    onClick={() => AnimeDetails(id)}
+                    onClick={() => AnimeDetails(malId)}
                   >
                     <img
                       className="object-cover object-center w-full h-full rounded-md image"

@@ -6,6 +6,7 @@ import Popular from "./pages/Popular";
 import Search from "./pages/Search";
 import Watch from "./pages/Watch";
 import { ContextApi } from "./pages/context/Context";
+import AdWatch from "./pages/AdWatch";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/watch/:id" element={<Watch />} />
+              <Route path="/anime/:id" element={<AdWatch />} />
               <Route path="/search" element={<Search />} />
             </Routes>
             {/* <Popular /> */}

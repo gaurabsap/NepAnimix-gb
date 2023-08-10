@@ -108,3 +108,7 @@ font-family: 'Roboto', sans-serif; */
 .radius {
   border-radius: 0px 0px 10px 10px;
 }
+
+.trans {
+  background-color: rgba(0, 0, 0, 0.507);
+}
