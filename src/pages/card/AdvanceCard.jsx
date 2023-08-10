@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "../Skeleton";
 import notfound from "../../assets/not.png";
-import { BsFillPlayCircleFill } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 const AdvanceCard = ({ data, load }) => {
   const navigate = useNavigate();
@@ -99,6 +99,10 @@ const AdvanceCard = ({ data, load }) => {
                         </p>
                       ))}
                     </div>
+                    <BsPlusCircleFill
+                      title="Add to list"
+                      className="cursor-pointer lg:text-3xl text-red-400 text-xl"
+                    />
                   </div>
                 </div>
               </>

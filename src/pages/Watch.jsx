@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Nav from "./Nav";
 import SkeletonWatch from "./loading/SkeletonWatch";
 import { AiOutlineArrowLeft, AiFillPlayCircle } from "react-icons/ai";
@@ -12,6 +12,7 @@ import {
   BsInstagram,
   BsTwitter,
 } from "react-icons/bs";
+import Genre from "./Genre";
 
 const Watch = () => {
   const [data, setData] = useState([]);
@@ -28,6 +29,7 @@ const Watch = () => {
     };
     CallApi();
   }, [id]);
+  const navigator = useNavigate();
   const Dates = (isoDate) => {
     const date = new Date(isoDate);
     const options = {
@@ -133,33 +135,35 @@ const Watch = () => {
                     </div>
                   </div>
                   <div className="lg:h-screen md:w-full md:h-[350px] lg:w-[400px] h-[40vh] trans rounded-lg flex flex-col justify-center items-center px-4">
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-3">
                       <h1>Native : {title.native}</h1>
                       <p>Season: {season}</p>
                       <p>Aired at: {Dates(createdAt)}</p>
                       <p>Current Ep: {currentEpisode}</p>
                       <p>Synonyms: {synonyms}</p>
-                      <div className="flex flex-col gap-10">
+                      <div className="flex flex-col gap-5">
                         <p className="w-full h-[1px] bg-white"></p>
                         <div className="flex flex-wrap items-center gap-2">
                           {genre.map((gen, i) => {
                             return (
                               <p
+                                onClick={() => navigator(`/genre/${gen}`)}
                                 className="cursor-pointer px-2 py-1 border rounded-lg"
                                 key={i}
                               >
-                                {gen},{" "}
+                                {gen}{" "}
                               </p>
                             );
                           })}
                         </div>
                         <p className="w-full h-[1px] bg-white"></p>
                       </div>
-                      <p>Next episodes on : {Dates(next)}</p>
+                      <p>Next episodes : {Dates(next)}</p>
                       <p>Duration: {duration}m</p>
                     </div>
                   </div>
                 </div>
+                {/* <Genre data={genre[0]} /> */}
               </>
             );
           })
@@ -167,7 +171,6 @@ const Watch = () => {
           <SkeletonWatch />
         )}
       </div>
-      {/* <SkeletonWatch /> */}
     </>
   );
 };

@@ -7,6 +7,7 @@ import Search from "./pages/Search";
 import Watch from "./pages/Watch";
 import { ContextApi } from "./pages/context/Context";
 import AdWatch from "./pages/AdWatch";
+import Genre from "./pages/Genre";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
               <Route path="/watch/:id" element={<Watch />} />
               <Route path="/anime/:id" element={<AdWatch />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/genre/:id" element={<Genre />} />
             </Routes>
             {/* <Popular /> */}
           </BrowserRouter>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton from "./Skeleton";
-import { BsFillPlayCircleFill } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Recent = () => {
@@ -104,6 +104,10 @@ const Recent = () => {
                         </p>
                       ))}
                     </div>
+                    <BsPlusCircleFill
+                      title="Add to list"
+                      className="cursor-pointer lg:text-3xl text-red-400 text-xl"
+                    />
                   </div>
                 </div>
               </>
