@@ -119,3 +119,7 @@ font-family: 'Roboto', sans-serif; */
   right: 50%;
   transform: translate(-50%, -50%);
 }
+
+.nav {
+  background-color: rgba(0, 0, 0, 0.753);
+}

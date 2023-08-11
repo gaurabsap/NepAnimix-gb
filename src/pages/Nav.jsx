@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logos.png";
 import { BiSearch, BiMenu } from "react-icons/bi";
@@ -8,6 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Nav = () => {
   const [showmenu, setshowMenu] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("transparent");
   const HandleMenu = () => {
     setshowMenu(!showmenu);
   };
@@ -15,12 +16,25 @@ const Nav = () => {
   const SearchAnime = () => {
     navigate("/search");
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setBackgroundColor("red");
+      } else {
+        setBackgroundColor("transparent");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
       <div
-        className={
-          "w-full flex items-center justify-between p-4 z-50 absolute top-0"
-        }
+        className={`w-full flex items-center justify-between p-4 z-50 fixed top-0 ${
+          backgroundColor === "transparent" ? "" : "nav"
+        }`}
       >
         <div className="flex items-center gap-20 md:gap-10 overflow-hidden">
           <NavLink className="relative z-20" to="/">

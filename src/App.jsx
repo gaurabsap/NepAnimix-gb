@@ -20,7 +20,7 @@ function App() {
         <AnimeVideo>
           <div className="flex flex-col">
             <BrowserRouter>
-              <Nav />
+              {/* <Nav /> */}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/details/:id" element={<Details />} />

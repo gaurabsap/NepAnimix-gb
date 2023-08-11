@@ -53,7 +53,7 @@ const Home = () => {
   };
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
       <div className="w-full bg-blue-950 ">
         <div className="relative">
           <Swiper
@@ -145,7 +145,7 @@ const Home = () => {
                           </div>
                         </div>
                         <div className=" bg-red-500 border-4 border-green-700">
-                          <div className="absolute w-[100%] md:w-[60%] top-0 right-0">
+                          <div className="absolute w-[100%] md:w-[60%] top-0 right-0 ">
                             <img
                               className="h-screen w-full object-center object-cover"
                               src={coverImage}
