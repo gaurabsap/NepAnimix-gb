@@ -46,7 +46,7 @@ export const AnimeVideo = ({ children }) => {
     if (lang === "En") {
       const find = id?.split("-");
       console.log(find);
-      if (!find.includes("dub")) {
+      if (!find?.includes("dub")) {
         const ind = find?.findIndex((dat) => dat === "episode" || dat === "ep");
         // console.log(ind);
         const val = "dub";

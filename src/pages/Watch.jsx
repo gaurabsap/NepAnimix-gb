@@ -78,8 +78,8 @@ const Watch = () => {
 
             return (
               <>
-                <div key={i} className="w-screen flex flex-col bg-blue-800 ">
-                  {/* <div className="px-5 py-4 w-full bg-black flex items-center gap-3">
+                <div key={i} className="w-screen flex flex-col bg-blue-800">
+                  {/* <div className="px-5 py-4 w-full bg-voilet-900 flex items-center gap-3">
                     <NavLink
                       className="text-red-500 flex items-center gap-2"
                       to="/"
@@ -90,59 +90,63 @@ const Watch = () => {
                     <h1 className="text-[15px] font-[300]">Watching {slug}</h1>
                   </div> */}
                   <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-0 gap-2 w-full relative">
-                    <div className="lg:w-[25%] h-[85vh] w-full flex flex-col gap-3 bg-blue-950 rounded-lg p-2 overflow-y-auto relative">
-                      <div className="flex items-center justify-between w-full bg-blue-950 sticky top-0 left-0 z-20">
+                    <div className="lg:w-[25%] h-[85vh] w-full flex flex-col gap-3 bg-blue-950 overflow-y-auto relative">
+                      <div className="flex items-center justify-between w-full bg-blue-800 sticky top-0 left-0 z-20">
                         <input
-                          className="px-5 py-1 bg-transparent bg-blue-800  outline-0 w-full rounded-md"
+                          className="px-2 py-2 bg-transparent bg-blue-800  outline-0 w-full rounded-md"
                           type="text"
                           placeholder="Search episodes"
                         />
-                        <BiSearch className="" />
+                        <BiSearch className="mr-5" size={20} />
                       </div>
-                      {episodes.length > 0 ? (
-                        episodes.map((dat, i) => {
-                          const { number, sources, title, image } = dat;
-                          return (
-                            <div
-                              key={i}
-                              onClick={() =>
-                                HandleVideo(sources[0].target, image)
-                              }
-                              className={
-                                selectedep === sources[0].target
-<<<<<<< HEAD
-                                  ? "flex flex-wrap items-center justify-between gap-2 bg-yellow-700 w-full p-2"
-=======
-                                  ? "flex flex-wrap items-center justify-between gap-2 bg-yellow-800 w-full p-2"
->>>>>>> 43643392df2bc909909e067c60f5e2188bc80d35
-                                  : "flex flex-wrap items-center justify-between gap-2 bg-blue-800 w-full p-2"
-                              }
-                              // className={` `}
-                            >
-                              {episodes.length < 24 ? (
-                                <div className="flex items-center justify-between w-full">
-                                  <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
-                                    {i + 1}. {title}
-                                  </p>
-                                  <AiFillPlayCircle size={20} />
-                                </div>
-                              ) : (
-                                <div className="flex flex-wrap">
-                                  <p className="inline-block w-fit cursor-pointer">
+                      <div
+                        className={`${
+                          episodes.length > 24
+                            ? "flex flex-wrap w-full bg-black"
+                            : "w-full"
+                        }`}
+                      >
+                        {episodes.length > 0 ? (
+                          episodes.map((dat, i) => {
+                            const { number, sources, title, image } = dat;
+                            return (
+                              <div
+                                key={i}
+                                onClick={() =>
+                                  HandleVideo(sources[0].target, image)
+                                }
+                                className={`flex items-center justify-between  p-2 ${
+                                  selectedep === sources[0].target
+                                    ? "bg-red-700"
+                                    : "bg-transparent"
+                                } ${episodes.length > 24 ? "w-fit" : "w-full"}`}
+                                // className={` `}
+                              >
+                                {episodes.length < 24 ? (
+                                  <div className="flex items-center justify-between w-full">
+                                    <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
+                                      {i + 1}. {title}
+                                    </p>
+                                    <AiFillPlayCircle size={20} />
+                                  </div>
+                                ) : (
+                                  // <div className="">
+                                  <p className="cursor-pointer px-2 py-0 rounded-lg">
                                     {number}
                                   </p>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })
-                      ) : (
-                        <h1 className="text-center my-auto">
-                          No episodes found
-                        </h1>
-                      )}
+                                  // </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <h1 className="text-center my-auto">
+                            No episodes found
+                          </h1>
+                        )}
+                      </div>
                     </div>
-                    <div className="lg:flex-1 w-full h-[85vh] bg-blue-950 rounded-lg relative overflow-hidden">
+                    <div className="lg:flex-1 w-full h-[85vh] bg-blue-950 relative overflow-hidden">
                       <div className="flex flex-col w-full h-[90%]">
                         {load ? (
                           <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse relative">
