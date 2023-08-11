@@ -110,7 +110,11 @@ const Watch = () => {
                               }
                               className={
                                 selectedep === sources[0].target
+<<<<<<< HEAD
                                   ? "flex flex-wrap items-center justify-between gap-2 bg-yellow-700 w-full p-2"
+=======
+                                  ? "flex flex-wrap items-center justify-between gap-2 bg-yellow-800 w-full p-2"
+>>>>>>> 43643392df2bc909909e067c60f5e2188bc80d35
                                   : "flex flex-wrap items-center justify-between gap-2 bg-blue-800 w-full p-2"
                               }
                               // className={` `}
