@@ -96,7 +96,7 @@ const Watch = () => {
                               }
                               className={
                                 selectedep === sources[0].target
-                                  ? "flex flex-wrap items-center justify-between gap-2 bg-black w-full p-2"
+                                  ? "flex flex-wrap items-center justify-between gap-2 bg-yellow-800 w-full p-2"
                                   : "flex flex-wrap items-center justify-between gap-2 bg-blue-800 w-full p-2"
                               }
                               // className={` `}
@@ -160,7 +160,7 @@ const Watch = () => {
                         </div>
                       ) : video.length > 0 ? (
                         video.map((dat) => {
-                          console.log(dat);
+                          // console.log(dat);
                           return (
                             // <ReactPlayer
                             //   url={dat?.sources[4]?.url}
@@ -186,7 +186,7 @@ const Watch = () => {
                         <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse"></div>
                       )}
                     </div>
-                    <div className="absolute right-[40%] bottom-0 bg-black rounded-lg flex items-center p-1">
+                    <div className="absolute right-[40%] bottom-0 bg-black rounded-lg flex items-center p-1 transition-all duration-200">
                       <button
                         className={`px-2 py-1 ${
                           lang === "Jp" ? "bg-green-600" : ""
