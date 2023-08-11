@@ -10,7 +10,8 @@ import loading from "../assets/loading.gif";
 import ReactPlayer from "react-player";
 import Video from "./Video";
 const Watch = () => {
-  const { setImages, images, setId, video, load, setLoad } =
+  const [selectedep, setSelectedEp] = useState();
+  const { setImages, images, setId, video, load, setLoad, setLang, lang } =
     useContext(AnimeContext);
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -34,6 +35,7 @@ const Watch = () => {
     // alert(img);
     setId(id);
     setImages(img);
+    setSelectedEp(id);
   };
   useEffect(() => {
     setLoad(true);
@@ -42,6 +44,8 @@ const Watch = () => {
       setId(data[0]?.episodes[0]?.sources[0].target);
       console.log(data[0]?.episodes[0]?.sources[0].target);
       setLoad(false);
+      setSelectedEp(data[0]?.episodes[0]?.sources[0].target);
+      setLang(lang);
     }
   }, [data]);
   return (
@@ -56,9 +60,9 @@ const Watch = () => {
               <>
                 <div
                   key={i}
-                  className="w-screen h-[100vh] flex flex-col  gap-2 items-end justify-center bg-blue-800"
+                  className="w-screen h-[100vh] flex flex-col items-end justify-center bg-blue-800"
                 >
-                  <div className="flex lg:flex-row flex-col-reverse items-center  gap-5 w-full h-[90vh] p-3">
+                  <div className="flex lg:flex-row flex-col-reverse items-center gap-5 w-full h-[90vh] p-3 relative">
                     <div className="lg:w-[25%] h-4/5 w-full flex flex-col gap-3 bg-blue-950 rounded-lg p-2 overflow-y-auto relative">
                       <div className="flex items-center justify-between w-full bg-blue-950 sticky top-0 left-0 z-20">
                         <input
@@ -72,14 +76,19 @@ const Watch = () => {
                         episodes.map((dat, i) => {
                           const { number, sources, title, image } = dat;
                           //   setImages(image);
-                          console.log(episodes.length);
+                          // console.log(episodes.length);
                           return (
                             <div
                               key={i}
                               onClick={() =>
                                 HandleVideo(sources[0].target, image)
                               }
-                              className="flex items-center justify-between gap-2 bg-blue-800 w-full p-2"
+                              className={
+                                selectedep === sources[0].target
+                                  ? "flex flex-wrap items-center justify-between gap-2 bg-black w-full p-2"
+                                  : "flex flex-wrap items-center justify-between gap-2 bg-blue-800 w-full p-2"
+                              }
+                              // className={` `}
                             >
                               {episodes.length < 24 ? (
                                 <div className="flex items-center justify-between w-full">
@@ -89,7 +98,11 @@ const Watch = () => {
                                   <AiFillPlayCircle size={20} />
                                 </div>
                               ) : (
-                                <p>{number}</p>
+                                <div className="flex flex-wrap">
+                                  <p className="inline-block w-fit cursor-pointer">
+                                    {number}
+                                  </p>
+                                </div>
                               )}
                             </div>
                           );
@@ -119,7 +132,7 @@ const Watch = () => {
                             src={images}
                             alt=""
                           />
-                          {/* {!load && !showvideo ? (
+                          {!load ? (
                             <FaPlay
                               onClick={() => setShowVideo(true)}
                               className="center cursor-pointer"
@@ -127,7 +140,7 @@ const Watch = () => {
                             />
                           ) : (
                             ""
-                          )} */}
+                          )}
                           <FaPlay
                             onClick={() => setShowVideo(true)}
                             className="center cursor-pointer"
@@ -145,14 +158,13 @@ const Watch = () => {
                             //   height="100%"
                             // />
                             <Video
-                              key={dat.sources[0]} // Add a unique key here
+                              key={dat.sources[0]}
                               videoUrls={[
                                 { url: dat.sources[0].url, quality: "144px" },
                                 { url: dat.sources[1].url, quality: "360px" },
                                 { url: dat.sources[2].url, quality: "720px" },
                                 { url: dat.sources[3].url, quality: "1080px" },
                                 { url: dat.sources[4].url, quality: "Auto" },
-                                // ... (add more qualities and URLs)
                               ]}
                               photo={images}
                             />
@@ -163,19 +175,24 @@ const Watch = () => {
                         <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse"></div>
                       )}
                     </div>
-
-                    {/* {video
-                        ? video.map((dat) => {
-                            // console.log(dat);
-                            return (
-                              <ReactPlayer
-                                url={dat?.sources[4]?.url}
-                                controls
-                              />
-                              //   <h1>hi</h1>
-                            );
-                          })
-                        : ""} */}
+                    <div className="absolute right-[40%] bottom-0 bg-black rounded-lg flex items-center p-1">
+                      <button
+                        className={`px-2 py-1 ${
+                          lang === "Jp" ? "bg-green-600" : ""
+                        }`}
+                        onClick={() => setLang("Jp")}
+                      >
+                        Jp
+                      </button>
+                      <button
+                        className={`px-2 py-1 ${
+                          lang === "En" ? "bg-green-600" : ""
+                        }`}
+                        onClick={() => setLang("En")}
+                      >
+                        EN
+                      </button>
+                    </div>
                   </div>
                 </div>
               </>

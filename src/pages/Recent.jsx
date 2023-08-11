@@ -31,7 +31,7 @@ const Recent = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 p-5 bg-gray-800">
+    <div className="flex flex-col gap-5 md:p-5 p-2 bg-gray-800">
       <div className="flex items-center justify-between">
         <h1 className="md:text-2xl underline underline-offset-8 ml-10 text-[15px]">
           Recent Episodes
@@ -40,7 +40,7 @@ const Recent = () => {
           View more
         </NavLink>
       </div>
-      <div className={`flex flex-wrap md:justify-center md:gap-2 gap-1`}>
+      <div className={`flex flex-wrap md:justify-center md:gap-2 gap-2`}>
         {loading ? (
           <Skeleton />
         ) : anime ? (
@@ -49,7 +49,7 @@ const Recent = () => {
               dat;
             return (
               <>
-                <div className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] sm:h-[250px] flex flex-col gap-1 p-2 overflow-hidden">
+                <div className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] h-[280px] flex flex-col gap-1 md:p-2 overflow-hidden">
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
                     onClick={() => AnimeDetails(anime.slug)}
@@ -61,13 +61,13 @@ const Recent = () => {
                     />
                     <BsFillPlayCircleFill className="text-4xl absolute top-[50%] left-[40%] show z-20" />
                     <div className="flex gap-2 items-center absolute bottom-0 left-1 z-20">
-                      <p className="md:px-3 p-2 py-1 rounded-lg md:text-[10px] text-[7px] bg-red-700">
+                      <p className="md:px-3 p-2 py-1 rounded-lg md:text-[10px] text-[9px] bg-red-700">
                         {anime.season}
                       </p>
-                      <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[7px]">
+                      <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[9px]">
                         {anime.format}
                       </p>
-                      <p className="hidden md:flex px-2 py-1 border rounded-lg md:text-[10px] text-[7px]">
+                      <p className="hidden md:flex px-2 py-1 border rounded-lg md:text-[10px] text-[9px]">
                         {anime.duration}m
                       </p>
                     </div>
@@ -80,9 +80,9 @@ const Recent = () => {
                       }}
                     ></div>
                   </div>
-                  <div className="w-full flex flex-col gap-2 h-[30%] p-2 bg-blue-800 radius">
+                  <div className="w-full flex flex-col gap-2  md:h-[30%] p-2 bg-blue-800 radius">
                     <div>
-                      <h1 className="truncate font-bold lg:text-[15px] text-[12px]">
+                      <h1 className="truncate font-bold lg:text-[15px] text-[14px]">
                         {title ? title : anime.title.english}
                       </h1>
                     </div>
@@ -90,16 +90,16 @@ const Recent = () => {
                       {/* <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
                         {anime.averageScore}
                       </p> */}
-                      <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
+                      <p className="px-2 py-1 border rounded-md md:text-[11px] text-[8px]">
                         {anime.status}
                       </p>
-                      <p className="px-3 py-1 border rounded-md md:text-[11px] text-[5px]">
+                      <p className="px-3 py-1 border rounded-md md:text-[11px] text-[8px]">
                         Ep{number}
                       </p>
                     </div>
                     <div className="flex gap-1 text-[13px] truncate">
                       {anime.genre.slice(0, 2).map((dat) => (
-                        <p className="text-yellow-500 text-[10px] md:text-[15px]">
+                        <p className="text-yellow-500 text-[12px] md:text-[15px]">
                           {dat},{" "}
                         </p>
                       ))}

@@ -19,7 +19,7 @@ const Search = () => {
   const [selectedstatus, setSelectedStatus] = useState(null);
   const [selectedtype, setSelectedType] = useState(null);
   const [selectedgenre, setSelectedGenre] = useState([]);
-  console.log(advancesearch);
+  // console.log(advancesearch);
   const [genre, setGenre] = useState([]);
   // console.log(genre);
 
@@ -128,16 +128,6 @@ const Search = () => {
     });
     let genresQuery = JSON.stringify(genre);
     console.log(genresQuery);
-    // setQuery((prevQuery) => {
-    //   if (prevQuery.includes("&genres=")) {
-    //     return prevQuery.replace(
-    //       /&genres=\[[^\]]*\]/,
-    //       `&genres=${JSON.stringify(genre)}`
-    //     );
-    //   } else {
-    //     return `&genres=${JSON.stringify(genre)}`;
-    //   }
-    // });
   };
   useEffect(() => {
     setQuery((prevQuery) => {
