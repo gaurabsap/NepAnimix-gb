@@ -9,22 +9,25 @@ export const AnimeVideo = ({ children }) => {
   const [images, setImages] = useState("");
   const [video, setVideo] = useState([]);
   const [lang, setLang] = useState("Jp");
+  const [error, setError] = useState("En");
   console.log(id);
-  console.log(lang);
+  // console.log(lang);
 
   useEffect(() => {
     if (lang === "En") {
       const find = id?.split("-");
       console.log(find);
-      const ind = find?.findIndex((dat) => dat === "episode" || dat === "ep");
-      // console.log(ind);
-      const val = "dub";
-      const arr = [...find];
-      arr.splice(ind, 0, val);
-      // console.log(arr);
-      const newarr = arr.join("-");
-      console.log(newarr);
-      setId(newarr);
+      if (!find.includes("dub")) {
+        const ind = find?.findIndex((dat) => dat === "episode" || dat === "ep");
+        // console.log(ind);
+        const val = "dub";
+        const arr = [...find];
+        arr.splice(ind, 0, val);
+        // console.log(arr);
+        const newarr = arr.join("-");
+        console.log(newarr);
+        setId(newarr);
+      }
     }
     if (lang === "Jp") {
       const arr = id?.split("-");
@@ -38,23 +41,42 @@ export const AnimeVideo = ({ children }) => {
       }
     }
   }, [lang]);
-
+  useEffect(() => {
+    console.log(lang);
+    if (lang === "En") {
+      const find = id?.split("-");
+      console.log(find);
+      if (!find.includes("dub")) {
+        const ind = find?.findIndex((dat) => dat === "episode" || dat === "ep");
+        // console.log(ind);
+        const val = "dub";
+        const arr = [...find];
+        arr.splice(ind, 0, val);
+        // console.log(arr);
+        const newarr = arr.join("-");
+        console.log(newarr);
+        setId(newarr);
+      }
+    }
+  });
   // console.log(lang);
   //
   useEffect(() => {
     const CallApi = async () => {
       try {
         setLoad(true);
-
         const resq = await axios.get(
           `https://api.consumet.org/anime/gogoanime/watch${id}`
         );
         setVideo([resq.data]);
         setLoad(false);
         console.log(resq);
+        setError("En");
       } catch (error) {
         if (lang === "En") {
           console.log("No dub found");
+          setError("nodub");
+          setLang("Jp");
         }
         console.log(error.message);
       }
@@ -73,6 +95,7 @@ export const AnimeVideo = ({ children }) => {
         setLoad,
         setLang,
         lang,
+        error,
       }}
     >
       {children}

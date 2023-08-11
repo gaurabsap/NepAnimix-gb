@@ -11,21 +11,30 @@ import ReactPlayer from "react-player";
 import Video from "./Video";
 const Watch = () => {
   const [selectedep, setSelectedEp] = useState();
-  const { setImages, images, setId, video, load, setLoad, setLang, lang } =
-    useContext(AnimeContext);
+  const {
+    setImages,
+    images,
+    setId,
+    video,
+    load,
+    setLoad,
+    setLang,
+    lang,
+    error,
+  } = useContext(AnimeContext);
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [showvideo, setShowVideo] = useState(false);
   //   const [loading, setLoading] = useState(false);
-  console.log(video);
+  // console.log(video);
   useEffect(() => {
     const CallApi = async () => {
       try {
         const resq = await axios.get(`https://api.enime.moe/anime/${id}`);
-        console.log(resq.data);
+        // console.log(resq.data);
         setData([resq.data]);
       } catch (error) {
-        console.log("xaina");
+        // console.log("xaina");
       }
     };
     CallApi();
@@ -36,6 +45,7 @@ const Watch = () => {
     setId(id);
     setImages(img);
     setSelectedEp(id);
+    setLang(lang);
   };
   useEffect(() => {
     setLoad(true);
@@ -45,7 +55,8 @@ const Watch = () => {
       console.log(data[0]?.episodes[0]?.sources[0].target);
       setLoad(false);
       setSelectedEp(data[0]?.episodes[0]?.sources[0].target);
-      setLang(lang);
+      // setLang(lang);
+      console.log(lang);
     }
   }, [data]);
   return (
@@ -185,12 +196,13 @@ const Watch = () => {
                         Jp
                       </button>
                       <button
+                        disabled={error === "nodub"}
                         className={`px-2 py-1 ${
                           lang === "En" ? "bg-green-600" : ""
                         }`}
                         onClick={() => setLang("En")}
                       >
-                        EN
+                        {error}
                       </button>
                     </div>
                   </div>
