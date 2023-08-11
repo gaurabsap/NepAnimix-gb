@@ -90,10 +90,10 @@ const Watch = () => {
                     <h1 className="text-[15px] font-[300]">Watching {slug}</h1>
                   </div> */}
                   <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-0 gap-2 w-full relative">
-                    <div className="lg:w-[25%] h-[85vh] w-full flex flex-col gap-3 bg-blue-950 overflow-y-auto relative">
-                      <div className="flex items-center justify-between w-full bg-blue-800 sticky top-0 left-0 z-20">
+                    <div className="lg:w-[25%] h-[85vh] w-full flex flex-col gap-0 bg-blue-950 overflow-y-auto relative">
+                      <div className="flex items-center justify-between w-full bg-red-600 sticky top-0 left-0 z-20">
                         <input
-                          className="px-2 py-2 bg-transparent bg-blue-800  outline-0 w-full rounded-md"
+                          className="px-2 py-2 bg-transparent bg-blue-800  outline-0 w-full rounded-md placeholder:text-white"
                           type="text"
                           placeholder="Search episodes"
                         />
@@ -102,7 +102,7 @@ const Watch = () => {
                       <div
                         className={`${
                           episodes.length > 24
-                            ? "flex flex-wrap w-full bg-black"
+                            ? "flex flex-wrap gap-2 items-center w-full rounded-md bg-black"
                             : "w-full"
                         }`}
                       >
@@ -115,11 +115,15 @@ const Watch = () => {
                                 onClick={() =>
                                   HandleVideo(sources[0].target, image)
                                 }
-                                className={`flex items-center justify-between  p-2 ${
+                                className={`mt-3 ml-2 flex items-center justify-between py-1 px-2 ${
                                   selectedep === sources[0].target
-                                    ? "bg-red-700"
+                                    ? ` rounded-lg ${
+                                        episodes.length > 24
+                                          ? "w-fit bg-yellow-700"
+                                          : "w-full bg-black py-3"
+                                      }`
                                     : "bg-transparent"
-                                } ${episodes.length > 24 ? "w-fit" : "w-full"}`}
+                                } `}
                                 // className={` `}
                               >
                                 {episodes.length < 24 ? (
@@ -131,7 +135,7 @@ const Watch = () => {
                                   </div>
                                 ) : (
                                   // <div className="">
-                                  <p className="cursor-pointer px-2 py-0 rounded-lg">
+                                  <p className="cursor-pointer w-[22px] h-[22px] flex items-center justify-center rounded-lg">
                                     {number}
                                   </p>
                                   // </div>
@@ -146,7 +150,7 @@ const Watch = () => {
                         )}
                       </div>
                     </div>
-                    <div className="lg:flex-1 w-full h-[85vh] bg-blue-950 relative overflow-hidden">
+                    <div className="lg:flex-1 w-full h-[85vh] bg-blue-950 border border-black relative overflow-hidden">
                       <div className="flex flex-col w-full h-[90%]">
                         {load ? (
                           <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse relative">
@@ -207,12 +211,12 @@ const Watch = () => {
                           <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse"></div>
                         )}
                       </div>
-                      <div className="lg:w-[70%] flex justify-between items-center overflow-hidden p-3">
-                        <div className="flex gap-2 items-center">
-                          <h1 className="text-[18px]">Lang: </h1>
+                      <div className="lg:w-full flex justify-between items-center overflow-hidden p-3">
+                        <div className="flex gap-5 items-center">
+                          <h1 className="text-[18px]">Language: </h1>
                           <div className="bg-black rounded-lg overflow-hidden">
                             <button
-                              className={`px-4 py-1 ${
+                              className={`px-3 py-0 ${
                                 lang === "Jp" ? "bg-green-600" : ""
                               }`}
                               onClick={() => setLang("Jp")}
@@ -221,7 +225,7 @@ const Watch = () => {
                             </button>
                             <button
                               disabled={error === "nodub"}
-                              className={`px-4 py-1 ${
+                              className={`px-3 py-0 ${
                                 lang === "En" ? "bg-green-600" : ""
                               }`}
                               onClick={() => setLang("En")}
