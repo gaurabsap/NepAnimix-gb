@@ -24,8 +24,6 @@ const Video = ({ videoUrls, photo }) => {
             },
           },
           pic: photo,
-          // autoplay: true,
-          // autoplay: true,
           // muted: true,
         },
       });

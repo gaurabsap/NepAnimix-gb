@@ -134,7 +134,7 @@ const Home = () => {
                           <div className="flex items-center gap-5">
                             <button
                               onClick={() => HandleWatch(id)}
-                              className="bg-slate-100 p-2 rounded-md flex items-center gap-1 text-black"
+                              className="bg-yellow-400 p-2 rounded-md flex items-center gap-1 text-black"
                             >
                               <AiFillPlayCircle size={20} /> Watch now
                             </button>
