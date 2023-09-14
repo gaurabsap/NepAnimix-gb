@@ -37,6 +37,7 @@ const Watch = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [showvideo, setShowVideo] = useState(false);
+  const [isPlay, setIsPlay] = useState(false);
   useEffect(() => {
     const CallApi = async () => {
       try {
@@ -79,16 +80,6 @@ const Watch = () => {
             return (
               <>
                 <div key={i} className="w-screen flex flex-col bg-blue-800">
-                  {/* <div className="px-5 py-4 w-full bg-voilet-900 flex items-center gap-3">
-                    <NavLink
-                      className="text-red-500 flex items-center gap-2"
-                      to="/"
-                    >
-                      <AiOutlineArrowLeft color="white" />
-                      Home
-                    </NavLink>
-                    <h1 className="text-[15px] font-[300]">Watching {slug}</h1>
-                  </div> */}
                   <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-0 gap-2 w-full relative">
                     <div className="lg:w-[25%] h-[85vh] w-full flex flex-col gap-0 bg-blue-950 overflow-y-auto relative">
                       <div className="flex items-center justify-between w-full bg-red-600 sticky top-0 left-0 z-20">
@@ -153,7 +144,7 @@ const Watch = () => {
                     <div className="lg:flex-1 w-full h-[85vh] bg-blue-950 border border-black relative overflow-hidden">
                       <div className="flex flex-col w-full h-[90%]">
                         {load ? (
-                          <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse relative">
+                          <div className="lg:flex-1 w-full h-full bg-blue-950 rounded-lg animate-pulse">
                             <img
                               className="absolute top-[40%] 
                             left-[40%] w-[8%]"
@@ -169,31 +160,38 @@ const Watch = () => {
                             <img
                               className={`w-full h-full object-cover opacity-25 {video ? "hidden" : "flex"}`}
                               src={images}
-                              alt=""
+                              alt="photo"
                             />
                             {!load ? (
                               <FaPlay
-                                onClick={() => setShowVideo(true)}
+                                onClick={() => {
+                                  setShowVideo(true);
+                                  setIsPlay(true);
+                                }}
                                 className="center cursor-pointer"
-                                size={50}
+                                size={60}
                               />
                             ) : (
                               ""
                             )}
-                            <FaPlay
+                            {/* <FaPlay
                               onClick={() => setShowVideo(true)}
                               className="center cursor-pointer"
                               size={50}
-                            />
+                            /> */}
                           </div>
                         ) : video.length > 0 ? (
                           video.map((dat) => {
                             // console.log(dat);
                             return (
                               <Video
-                                key={dat.sources[0]}
+                                play={isPlay}
+                                key={dat?.sources[0]}
                                 videoUrls={[
-                                  { url: dat.sources[0].url, quality: "144px" },
+                                  {
+                                    url: dat.sources[0]?.url,
+                                    quality: "144px",
+                                  },
                                   { url: dat.sources[1].url, quality: "360px" },
                                   { url: dat.sources[2].url, quality: "720px" },
                                   {
