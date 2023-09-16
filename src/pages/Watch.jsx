@@ -9,16 +9,10 @@ import {
   BiSolidSkipPreviousCircle,
 } from "react-icons/bi";
 import { FaPlay } from "react-icons/fa";
-import {
-  GrChapterNext,
-  GrChapterPrevious,
-  GrFormPreviousLink,
-} from "react-icons/gr";
-import { FaBackwardFast } from "react-icons/fa6";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+
 import { AnimeContext, AnimeVideo } from "./context/AnimeContext";
 import loading from "../assets/loading.gif";
-import ReactPlayer from "react-player";
+
 import Video from "./Video";
 import Nav from "./Nav";
 const Watch = () => {
@@ -41,8 +35,12 @@ const Watch = () => {
   useEffect(() => {
     const CallApi = async () => {
       try {
-        const resq = await axios.get(`https://api.enime.moe/anime/${id}`);
-        // console.log(resq.data);
+        // `https://api.consumet.org/meta/anilist/info/${id}`
+
+        const resq = await axios.get(
+          `https://api.consumet.org/meta/anilist/info/${id}`
+        );
+        console.log(resq.data);
         setData([resq.data]);
       } catch (error) {
         // console.log("xaina");
@@ -60,12 +58,13 @@ const Watch = () => {
   useEffect(() => {
     setLoad(true);
     if (data.length > 0) {
+      console.log(data[0]?.episodes[0].image);
       setImages(data[0]?.episodes[0]?.image);
-      setId(data[0]?.episodes[0]?.sources[0].target);
-      console.log(data[0]?.episodes[0]?.sources[0].target);
+      setId(data[0]?.episodes[0]?.id);
+      // console.log(data[0]?.episodes[0]?.sources[0].target);
       setLoad(false);
-      setSelectedEp(data[0]?.episodes[0]?.sources[0].target);
-      console.log(lang);
+      setSelectedEp(data[0]?.episodes[0]?.id);
+      // console.log(lang);
     }
   }, [data]);
   return (
@@ -99,15 +98,13 @@ const Watch = () => {
                       >
                         {episodes.length > 0 ? (
                           episodes.map((dat, i) => {
-                            const { number, sources, title, image } = dat;
+                            const { number, sources, title, image, id } = dat;
                             return (
                               <div
                                 key={i}
-                                onClick={() =>
-                                  HandleVideo(sources[0].target, image)
-                                }
+                                onClick={() => HandleVideo(id, image)}
                                 className={`mt-3 ml-2 flex items-center justify-between py-1 px-2 ${
-                                  selectedep === sources[0].target
+                                  selectedep === id
                                     ? ` rounded-lg ${
                                         episodes.length > 24
                                           ? "w-fit bg-yellow-700"
@@ -120,7 +117,7 @@ const Watch = () => {
                                 {episodes.length < 24 ? (
                                   <div className="flex items-center justify-between w-full">
                                     <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
-                                      {i + 1}. {title}
+                                      {i + 1}. {title !== null ? title : number}
                                     </p>
                                     <AiFillPlayCircle size={20} />
                                   </div>

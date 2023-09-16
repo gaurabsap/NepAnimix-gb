@@ -37,13 +37,13 @@ const Video = ({ videoUrls, photo, play }) => {
         dpRef.current = dp;
       }
     }
-
-    // Play or pause the video based on the play prop.
-    if (dpRef.current) {
-      if (play) {
-        dpRef.current.play();
-      }
-    }
+    // if (dpRef.current) {
+    //   if (play) {
+    //     dpRef.current.play();
+    //   } else {
+    //     dpRef.current.pause();
+    //   }
+    // }
   }, [videoUrls, play]);
 
   return (

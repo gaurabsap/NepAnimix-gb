@@ -12,11 +12,12 @@ const Popular = () => {
     const CallApi = async () => {
       try {
         setLoading(true);
+        // https://api.enime.moe/popular?perPage=15
         const resq = await axios.get(
-          "https://api.enime.moe/popular?perPage=15"
+          "https://api.consumet.org/meta/anilist/popular?perPage=10&page=2"
         );
         console.log(resq);
-        setAnime(resq.data.data);
+        setAnime(resq.data.results);
         setLoading(false);
       } catch (error) {
         setLoading(false);

@@ -30,9 +30,11 @@ const Home = () => {
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     const ApiCall = async () => {
-      const resq = await axios.get("https://api.enime.moe/popular?perPage=5");
-      // console.log(resq.data.data);
-      setData(resq.data.data);
+      const resq = await axios.get(
+        "https://api.consumet.org/meta/anilist/popular?perPage=7"
+      );
+      // console.log(resq);
+      setData(resq.data.results);
     };
     ApiCall();
   }, []);
@@ -74,6 +76,7 @@ const Home = () => {
               {data &&
                 data.map((dat, i) => {
                   const {
+                    image,
                     averageScore,
                     bannerImage,
                     coverImage,
@@ -130,7 +133,7 @@ const Home = () => {
                               : description.slice(0, initialCharsToShow) +
                                 "... "}
                           </p>
-                          <p>Next episode on : {formatNextEpisode(next)}</p>
+                          {/* <p>Next episode on : {formatNextEpisode(next)}</p> */}
                           <div className="flex items-center gap-5">
                             <button
                               onClick={() => HandleWatch(id)}
@@ -148,7 +151,7 @@ const Home = () => {
                           <div className="absolute w-[100%] md:w-[60%] top-0 right-0 ">
                             <img
                               className="h-screen w-full object-center object-cover"
-                              src={coverImage}
+                              src={coverImage ? coverImage : image}
                               alt={slug}
                             />
                           </div>

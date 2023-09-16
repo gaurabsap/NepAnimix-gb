@@ -25,12 +25,16 @@ const SearchCard = ({ data, load }) => {
               currentEpisode,
               duration,
               format,
-
+              image,
               season,
+              totalEpisodes,
+              releaseDate,
               id,
               status,
               year,
               title,
+              type,
+              genres,
             } = dat;
             return (
               <>
@@ -41,17 +45,17 @@ const SearchCard = ({ data, load }) => {
                   >
                     <img
                       className="object-cover object-center w-full h-full rounded-md image"
-                      src={coverImage}
+                      src={image}
                       alt={slug}
                     />
                     <BsFillPlayCircleFill className="text-4xl absolute top-[50%] left-[40%] show z-20" />
                     <div className="flex gap-2 items-center absolute bottom-0 left-1 z-20">
                       <p className="md:px-3 p-2 py-1 rounded-lg md:text-[10px] text-[7px] bg-red-700">
-                        {season}
+                        {type}
                       </p>
-                      <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[7px]">
+                      {/* <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[7px]">
                         {format}
-                      </p>
+                      </p> */}
                       <p className="hidden md:flex px-2 py-1 border rounded-lg md:text-[10px] text-[7px]">
                         {duration}m
                       </p>
@@ -76,19 +80,17 @@ const SearchCard = ({ data, load }) => {
                         {status}
                       </p>
                       <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
-                        {year}
+                        {releaseDate}
                       </p>
 
                       <p className="hidden md:flex px-3 py-1 border rounded-md md:text-[11px] text-[5px]">
-                        Ep{currentEpisode}
+                        Ep{totalEpisodes}
                       </p>
                     </div>
                     <div className="flex items-center  gap-1 text-[13px] truncate relative">
-                      {dat.genre?.slice(0, 2).map((dat) => (
-                        <p className="text-yellow-500 text-[10px] md:text-[15px]">
-                          {dat},{" "}
-                        </p>
-                      ))}
+                      <p className="text-yellow-500 text-[10px] md:text-[15px]">
+                        {genres[0]}, {genres[1]}
+                      </p>
                     </div>
                     <BsPlusCircleFill
                       title="Add to list"

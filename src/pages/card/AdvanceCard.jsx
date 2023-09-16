@@ -7,7 +7,7 @@ const AdvanceCard = ({ data, load }) => {
   const navigate = useNavigate();
   console.log(data);
   const AnimeDetails = (id) => {
-    navigate(`/anime/${id}`);
+    navigate(`/details/${id}`);
   };
   return (
     <>

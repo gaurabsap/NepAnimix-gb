@@ -18,12 +18,15 @@ const Details = ({ setProgress }) => {
   // setProgress(40);
   // console.log(setProgress());
   const [data, setData] = useState([]);
+  // console.log(data);
   const { id } = useParams();
   useEffect(() => {
     const CallApi = async () => {
       try {
         // setProgress(70);
-        const resq = await axios.get(`https://api.enime.moe/anime/${id}`);
+        const resq = await axios.get(
+          `https://api.consumet.org/meta/anilist/info/${id}`
+        );
         console.log(resq.data);
         setData([resq.data]);
         // setProgress(100);
@@ -36,16 +39,19 @@ const Details = ({ setProgress }) => {
   }, [id]);
   const navigator = useNavigate();
   const Dates = (isoDate) => {
-    const date = new Date(isoDate);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-    return date.toLocaleDateString("en-US", options);
+    const date = new Date(isoDate * 1000);
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")} ${date
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}:${date
+      .getSeconds()
+      .toString()
+      .padStart(2, "0")}`;
+    return formattedDate;
   };
+
   const WatchAnime = () => {
     navigator(`/watch/${id}`);
   };
@@ -56,39 +62,39 @@ const Details = ({ setProgress }) => {
         {data.length > 0 ? (
           data.map((dat, i) => {
             const {
-              bannerImage,
+              image,
               countryOfOrigin,
-              coverImage,
+              cover,
               createdAt,
               currentEpisode,
               description,
               duration,
               episodes,
               format,
-              genre,
+              genres,
               mappings,
               next,
               season,
-              slug,
               status,
               synonyms,
               title,
               updatedAt,
-              year,
+              releaseDate,
+              nextAiringEpisode,
             } = dat;
             return (
               <>
                 <div
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9), rgba(0,0,0,0.99)), url(${bannerImage})`,
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9), rgba(0,0,0,0.99)), url(${cover})`,
                   }}
                   className="bg-cover w-screen h-screen flex lg:flex-row flex-col gap-12 lg:items-center lg:justify-between justify-center px-10 md:py-10 py-5 lg:pr-0"
                 >
                   <div className="flex md:gap-10 flex-1 gap-8 justify-center">
                     <img
                       className="object-cover object-center rounded-lg w-[30%]"
-                      src={coverImage}
-                      alt={slug}
+                      src={image}
+                      alt={title.english}
                     />
 
                     <div className="flex md:gap-10 gap-2 flex-col lg:gap-3">
@@ -115,7 +121,7 @@ const Details = ({ setProgress }) => {
                           </p>
                           <p className="flex items-center gap-1 text-[14px]">
                             <BsFillCalendarDateFill />
-                            {year}
+                            {releaseDate}
                           </p>
                         </div>
                         <div className="flex items-center gap-5">
@@ -149,13 +155,13 @@ const Details = ({ setProgress }) => {
                     <div className="flex flex-col gap-3">
                       <h1>Native : {title.native}</h1>
                       <p>Season: {season}</p>
-                      <p>Aired at: {Dates(createdAt)}</p>
+                      <p>Aired at: {releaseDate}</p>
                       <p>Current Ep: {currentEpisode}</p>
                       <p>Synonyms: {synonyms}</p>
                       <div className="flex flex-col gap-5">
                         <p className="w-full h-[1px] bg-white"></p>
                         <div className="flex flex-wrap items-center gap-2">
-                          {genre.map((gen, i) => {
+                          {genres.map((gen, i) => {
                             return (
                               <p
                                 onClick={() => navigator(`/genre/${gen}`)}
@@ -166,10 +172,18 @@ const Details = ({ setProgress }) => {
                               </p>
                             );
                           })}
+                          {/* {genres[0]}
+                          {genres[1]},
+                          {genres[0]} */}
                         </div>
                         <p className="w-full h-[1px] bg-white"></p>
                       </div>
-                      <p>Next episodes : {Dates(next)}</p>
+                      <p>
+                        Next episodes :{" "}
+                        {nextAiringEpisode?.airingTime
+                          ? Dates(nextAiringEpisode?.airingTime)
+                          : "Finished"}
+                      </p>
                       <p>Duration: {duration}m</p>
                     </div>
                   </div>

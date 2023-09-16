@@ -38,11 +38,13 @@ const Search = () => {
         setLoading(true);
       }
       if (!advancesearch) {
-        axios.get(`https://api.enime.moe/search/${search}`).then((response) => {
-          console.log(response);
-          setAnime(response.data.data);
-          setLoading(false);
-        });
+        axios
+          .get(`https://api.consumet.org/meta/anilist/${search}`)
+          .then((response) => {
+            console.log(response);
+            setAnime(response.data.results);
+            setLoading(false);
+          });
       }
     }, 800);
 

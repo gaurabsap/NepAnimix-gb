@@ -45,7 +45,7 @@ export const AnimeVideo = ({ children }) => {
     console.log(lang);
     if (lang === "En") {
       const find = id?.split("-");
-      console.log(find);
+      // console.log(find);
       if (!find?.includes("dub")) {
         const ind = find?.findIndex((dat) => dat === "episode" || dat === "ep");
         // console.log(ind);
@@ -66,7 +66,7 @@ export const AnimeVideo = ({ children }) => {
       try {
         setLoad(true);
         const resq = await axios.get(
-          `https://api.consumet.org/anime/gogoanime/watch${id}`
+          `https://api.consumet.org/meta/anilist/watch/${id}`
         );
         setVideo([resq.data]);
         setLoad(false);

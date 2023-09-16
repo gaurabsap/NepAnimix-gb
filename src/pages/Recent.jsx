@@ -12,9 +12,10 @@ const Recent = () => {
       setLoading(true);
       try {
         const resq = await axios.get(
-          "https://api.enime.moe/recent?perPage=10&language=JP"
+          "https://api.consumet.org/meta/anilist/trending"
         );
-        setAnime(resq.data.data);
+        console.log(resq);
+        setAnime(resq.data.results);
         // console.log(resq);
         setLoading(false);
       } catch (error) {
@@ -34,7 +35,7 @@ const Recent = () => {
     <div className="flex flex-col gap-5 md:p-5 p-2 bg-gray-800">
       <div className="flex items-center justify-between">
         <h1 className="md:text-2xl underline underline-offset-8 ml-10 text-[15px]">
-          Recent Episodes
+          Trending Anime
         </h1>
         <NavLink className="mr-10" to="/">
           View more
@@ -45,30 +46,42 @@ const Recent = () => {
           <Skeleton />
         ) : anime ? (
           anime.map((dat, i) => {
-            const { slug, image, anime, number, id, status, title, season } =
-              dat;
+            const {
+              image,
+              cover,
+              totalEpisodes,
+              id,
+              status,
+              title,
+              season,
+              genres,
+              duration,
+              rating,
+              releaseDate,
+              type,
+            } = dat;
             return (
               <>
                 <div className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] h-[280px] flex flex-col gap-1 md:p-2 overflow-hidden">
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
-                    onClick={() => AnimeDetails(anime.slug)}
+                    onClick={() => AnimeDetails(id)}
                   >
                     <img
                       className="object-cover object-center w-full h-full rounded-md image"
-                      src={anime.coverImage}
-                      alt={slug}
+                      src={image}
+                      alt={title.romaji}
                     />
                     <BsFillPlayCircleFill className="text-4xl absolute top-[50%] left-[40%] show z-20" />
                     <div className="flex gap-2 items-center absolute bottom-0 left-1 z-20">
                       <p className="md:px-3 p-2 py-1 rounded-lg md:text-[10px] text-[9px] bg-red-700">
-                        {anime.season}
+                        {status}
                       </p>
-                      <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[9px]">
+                      {/* <p className="px-2 py-1 border rounded-lg md:text-[10px] text-[9px]">
                         {anime.format}
-                      </p>
+                      </p> */}
                       <p className="hidden md:flex px-2 py-1 border rounded-lg md:text-[10px] text-[9px]">
-                        {anime.duration}m
+                        {duration}m
                       </p>
                     </div>
                     <div
@@ -83,26 +96,29 @@ const Recent = () => {
                   <div className="w-full flex flex-col gap-2  md:h-[30%] p-2 bg-blue-800 radius">
                     <div>
                       <h1 className="truncate font-bold lg:text-[15px] text-[14px]">
-                        {title ? title : anime.title.english}
+                        {title.english}
                       </h1>
                     </div>
                     <div className="flex items-end gap-2">
-                      {/* <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
-                        {anime.averageScore}
-                      </p> */}
+                      <p className="px-2 py-1 border rounded-md md:text-[11px] text-[5px]">
+                        {releaseDate}
+                      </p>
                       <p className="px-2 py-1 border rounded-md md:text-[11px] text-[8px]">
-                        {anime.status}
+                        {type}
                       </p>
                       <p className="px-3 py-1 border rounded-md md:text-[11px] text-[8px]">
-                        Ep{number}
+                        Ep{totalEpisodes}
                       </p>
                     </div>
                     <div className="flex gap-1 text-[13px] truncate">
-                      {anime.genre.slice(0, 2).map((dat) => (
+                      {/* {genres.slice(0, 2).map((dat) => (
                         <p className="text-yellow-500 text-[12px] md:text-[15px]">
                           {dat},{" "}
                         </p>
-                      ))}
+                      ))} */}
+                      <p className="text-yellow-500 text-[12px] md:text-[15px]">
+                        {genres[0]}, {genres[1]}
+                      </p>
                     </div>
                     <BsPlusCircleFill
                       title="Add to list"
