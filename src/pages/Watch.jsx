@@ -117,7 +117,9 @@ const Watch = () => {
                                 {episodes.length < 24 ? (
                                   <div className="flex items-center justify-between w-full">
                                     <p className="flex items-center gap-2 rounded-lg cursor-pointer text-[14px] w-[80%] truncate">
-                                      {i + 1}. {title !== null ? title : number}
+                                      {title !== null
+                                        ? title
+                                        : `Episode : ${number}`}
                                     </p>
                                     <AiFillPlayCircle size={20} />
                                   </div>

@@ -25,7 +25,7 @@ export const AnimeVideo = ({ children }) => {
         arr.splice(ind, 0, val);
         // console.log(arr);
         const newarr = arr.join("-");
-        console.log(newarr);
+        // console.log(newarr);
         setId(newarr);
       }
     }
@@ -70,7 +70,7 @@ export const AnimeVideo = ({ children }) => {
         );
         setVideo([resq.data]);
         setLoad(false);
-        console.log(resq);
+        // console.log(resq);
         setError("En");
       } catch (error) {
         if (lang === "En") {
@@ -78,7 +78,7 @@ export const AnimeVideo = ({ children }) => {
           setError("nodub");
           setLang("Jp");
         }
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
     CallApi();

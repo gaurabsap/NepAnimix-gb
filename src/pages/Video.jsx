@@ -37,13 +37,14 @@ const Video = ({ videoUrls, photo, play }) => {
         dpRef.current = dp;
       }
     }
-    // if (dpRef.current) {
-    //   if (play) {
-    //     dpRef.current.play();
-    //   } else {
-    //     dpRef.current.pause();
-    //   }
-    // }
+    if (dpRef.current) {
+      if (play) {
+        dpRef.current.play();
+      }
+      // else {
+      //   dpRef.current.pause();
+      // }
+    }
   }, [videoUrls, play]);
 
   return (

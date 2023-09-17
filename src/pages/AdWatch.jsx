@@ -10,7 +10,7 @@ const AdWatch = () => {
     const CallApi = async () => {
       try {
         const resq = await axios.get(
-          `https://api.consumet.org/meta/mal/info/${id}`
+          `https://api.consumet.org/meta/anilist/info/${id}`
         );
         console.log(resq.data);
         setData([resq.data]);

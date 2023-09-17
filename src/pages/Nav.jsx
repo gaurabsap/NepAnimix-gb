@@ -81,7 +81,7 @@ const Nav = () => {
             <NavLink className="p-2" to="/top-airing">
               Top-airing
             </NavLink>
-            <NavLink className="p-2" to="/schedule">
+            <NavLink className="p-2" to="/scedule">
               Schedule
             </NavLink>
           </div>
