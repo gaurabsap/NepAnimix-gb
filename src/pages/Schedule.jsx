@@ -33,6 +33,7 @@ const Schedule = () => {
   const AnimeDetails = (id) => {
     navigate(`/details/${id}`);
   };
+  const reversedData = data.slice().reverse();
   return (
     <>
       <Nav />
@@ -59,8 +60,8 @@ const Schedule = () => {
         <div className={`flex flex-wrap md:justify-center md:gap-2 gap-2`}>
           {loading ? (
             <Skeleton />
-          ) : data ? (
-            data.map((dat, i) => {
+          ) : reversedData ? (
+            reversedData.map((dat, i) => {
               const {
                 broadcast,
                 mal_id,
