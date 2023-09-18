@@ -7,6 +7,10 @@ import { BsFillPlayCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Schedule = () => {
+  const date = new Date();
+  const today = date.getDay();
+  //   console.log(date.getDay());
+
   const { setFilter, data, loading } = useContext(SceduleContext);
   console.log(data);
   const scedule = [
@@ -20,7 +24,8 @@ const Schedule = () => {
     "Other",
     "Unknown",
   ];
-  const [select, setSelect] = useState("Sunday");
+  console.log(scedule[today]);
+  const [select, setSelect] = useState(scedule[today]);
   useEffect(() => {
     setFilter(select);
   }, []);

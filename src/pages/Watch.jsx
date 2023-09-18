@@ -7,6 +7,7 @@ import {
   BiSearch,
   BiSolidSkipNextCircle,
   BiSolidSkipPreviousCircle,
+  BiSolidTimeFive,
 } from "react-icons/bi";
 import { FaPlay } from "react-icons/fa";
 
@@ -15,6 +16,8 @@ import loading from "../assets/loading.gif";
 
 import Video from "./Video";
 import Nav from "./Nav";
+import { BsFillCalendarDateFill } from "react-icons/bs";
+import Comment from "./Comment";
 const Watch = () => {
   const [selectedep, setSelectedEp] = useState();
   const {
@@ -251,6 +254,59 @@ const Watch = () => {
         ) : (
           <WatchSkeleton />
         )}
+        <div className="p-5">
+          {data.map((dat, i) => {
+            const {
+              episodes,
+              bannerImage,
+              relations,
+              slug,
+              title,
+              status,
+              image,
+              season,
+              description,
+              duration,
+              format,
+              releaseDate,
+              type,
+            } = dat;
+            return (
+              <div className="flex">
+                <div className="w-[80%] flex flex-col lg:flex-row gap-5">
+                  <img className="w-[200px]" src={image} alt={title.english} />
+                  <div className="flex flex-col gap-5">
+                    <h1>{title.english}</h1>
+                    <div className="flex gap-4 items-center">
+                      <p className="text-[13px] px-1 py-1 bg-red-500 rounded-md">
+                        {status}
+                      </p>
+                      <p className="text-[13px] px-1 py-1 bg-red-500 rounded-md">
+                        {season}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <p className="flex items-center gap-1 text-[14px]">
+                        <AiFillPlayCircle />
+                        {type}
+                      </p>
+                      <p className="flex items-center gap-1 text-[14px]">
+                        <BiSolidTimeFive />
+                        {duration}
+                      </p>
+                      <p className="flex items-center gap-1 text-[14px]">
+                        <BsFillCalendarDateFill />
+                        {releaseDate}
+                      </p>
+                    </div>
+                    <p className="text-gray-400">{description}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <Comment />
       </div>
     </>
   );
