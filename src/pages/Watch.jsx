@@ -306,7 +306,7 @@ const Watch = () => {
             );
           })}
         </div>
-        <Comment />
+        <Comment id={id} />
       </div>
     </>
   );

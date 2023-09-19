@@ -13,7 +13,7 @@ const Nav = () => {
   const [showmodel, setShowModel] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("transparent");
   const HandleMenu = () => {
-    setshowMenu(true);
+    setshowMenu(!showmenu);
   };
   const navigate = useNavigate();
   const SearchAnime = () => {
@@ -39,11 +39,10 @@ const Nav = () => {
 
   useEffect(() => {
     const CheckUser = async () => {
-      const resq = await axios(
+      const resq = await axios.get(
         "http://127.0.0.1:4000/api/v1/user/details",
 
         {
-          method: "GET",
           withCredentials: true,
         }
       );
