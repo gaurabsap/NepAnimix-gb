@@ -5,12 +5,15 @@ import { BiSearch, BiMenu } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineClose } from "react-icons/ai";
+import Modal from "./Modal";
+import axios from "axios";
 
 const Nav = () => {
   const [showmenu, setshowMenu] = useState(false);
+  const [showmodel, setShowModel] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("transparent");
   const HandleMenu = () => {
-    setshowMenu(!showmenu);
+    setshowMenu(true);
   };
   const navigate = useNavigate();
   const SearchAnime = () => {
@@ -28,6 +31,24 @@ const Nav = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+  const ModalHandler = () => {
+    setShowModel(!showmodel);
+  };
+  // axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    const CheckUser = async () => {
+      axios.withcredentials = true;
+      const resq = await axios.get(
+        "http://127.0.0.1:4000/api/v1/user/details",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(resq);
+    };
+    CheckUser();
   }, []);
   return (
     <>
@@ -100,7 +121,11 @@ const Nav = () => {
               size={25}
             />
           </div>
-          <VscAccount className="cursor-pointer" size={25} />
+          <VscAccount
+            onClick={ModalHandler}
+            className="cursor-pointer"
+            size={25}
+          />
         </div>
         <BiMenu
           className="flex cursor-pointer lg:hidden z-10"
@@ -108,6 +133,7 @@ const Nav = () => {
           size={30}
         />
       </div>
+      <Modal show={showmodel} />
     </>
   );
 };
