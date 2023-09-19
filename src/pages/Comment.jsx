@@ -80,13 +80,14 @@ const Comment = ({ id }) => {
             data.map((dat, i) => {
               const {
                 comment,
-                like,
-                dislike,
+                likes,
+                dislikes,
                 replies,
                 username,
                 _id,
                 AnimeId,
                 photo,
+                userId,
               } = dat;
               return (
                 <>
@@ -94,12 +95,13 @@ const Comment = ({ id }) => {
                   <CommentModal
                     id={_id}
                     photo={photo}
-                    like={like}
+                    likes={likes}
                     comment={comment}
                     username={username}
                     AnimeId={AnimeId}
                     replies={replies}
-                    dislike={dislike}
+                    dislikes={dislikes}
+                    userId={userId}
                     // datas={data}
                   />{" "}
                 </>
