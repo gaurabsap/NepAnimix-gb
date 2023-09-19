@@ -8,7 +8,6 @@ const Video = ({ videoUrls, photo, play }) => {
 
   useEffect(() => {
     if (playerRef.current) {
-      // Create a new DPlayer instance only if it doesn't exist or if the play prop changes.
       if (!dpRef.current || dpRef.current.video.paused !== play) {
         if (dpRef.current) {
           dpRef.current.destroy();

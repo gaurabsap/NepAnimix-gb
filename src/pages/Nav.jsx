@@ -39,10 +39,11 @@ const Nav = () => {
 
   useEffect(() => {
     const CheckUser = async () => {
-      axios.withcredentials = true;
-      const resq = await axios.get(
+      const resq = await axios(
         "http://127.0.0.1:4000/api/v1/user/details",
+
         {
+          method: "GET",
           withCredentials: true,
         }
       );

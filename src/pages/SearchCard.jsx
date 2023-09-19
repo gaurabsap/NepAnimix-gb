@@ -38,7 +38,10 @@ const SearchCard = ({ data, load }) => {
             } = dat;
             return (
               <>
-                <div className="lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] sm:h-[300px] flex flex-col gap-1 p-2 overflow-hidden">
+                <div
+                  key={i}
+                  className="lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] sm:h-[300px] flex flex-col gap-1 p-2 overflow-hidden"
+                >
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
                     onClick={() => AnimeDetails(id)}

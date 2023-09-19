@@ -16,7 +16,7 @@ const Popular = () => {
         const resq = await axios.get(
           "https://api.consumet.org/meta/anilist/popular?perPage=10&page=2"
         );
-        console.log(resq);
+        // console.log(resq);
         setAnime(resq.data.results);
         setLoading(false);
       } catch (error) {

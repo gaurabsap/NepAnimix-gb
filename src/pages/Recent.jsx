@@ -14,7 +14,7 @@ const Recent = () => {
         const resq = await axios.get(
           "https://api.consumet.org/meta/anilist/trending"
         );
-        console.log(resq);
+        // console.log(resq);
         setAnime(resq.data.results);
         // console.log(resq);
         setLoading(false);
@@ -62,7 +62,10 @@ const Recent = () => {
             } = dat;
             return (
               <>
-                <div className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] h-[280px] flex flex-col gap-1 md:p-2 overflow-hidden">
+                <div
+                  key={i}
+                  className="mt-10 lg:w-[18%] w-[48%] md:w-[30%] md:h-[450px] h-[280px] flex flex-col gap-1 md:p-2 overflow-hidden"
+                >
                   <div
                     className="w-full h-[60%] relative cursor-pointer img overflow-hidden"
                     onClick={() => AnimeDetails(id)}
