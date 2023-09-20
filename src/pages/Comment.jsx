@@ -81,7 +81,7 @@ const Comment = ({ id }) => {
               const {
                 comment,
                 likes,
-                dislikes,
+                dislike,
                 replies,
                 username,
                 _id,
@@ -100,7 +100,7 @@ const Comment = ({ id }) => {
                     username={username}
                     AnimeId={AnimeId}
                     replies={replies}
-                    dislikes={dislikes}
+                    dislikes={dislike}
                     userId={userId}
                     // datas={data}
                   />{" "}

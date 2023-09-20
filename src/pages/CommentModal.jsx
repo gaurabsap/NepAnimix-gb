@@ -15,6 +15,7 @@ const CommentModal = ({
   photo,
   userId,
 }) => {
+  console.log(dislikes);
   const [likecolor, setLikecolor] = useState("");
   const [dislikecolor, setDisLikecolor] = useState("");
   const [likesCount, setLikesCount] = useState(likes);
@@ -23,8 +24,12 @@ const CommentModal = ({
   const LikeButton = async () => {
     try {
       let newLikesCount = likesCount;
-      if (dislikecolor.length > 0) {
+      let newDisLikeCount = dislikesCount;
+      if (dislikecolor.length > 1) {
         setDisLikecolor("");
+        newDisLikeCount -= 1;
+        // newLikesCount += 1;
+        setLikecolor("red");
       }
       if (likecolor === "") {
         newLikesCount += 1;
@@ -33,26 +38,52 @@ const CommentModal = ({
         newLikesCount -= 1;
         setLikecolor("");
       }
+      setLikesCount(newLikesCount);
+      setDisLikesCount(newDisLikeCount);
+      console.log(newDisLikeCount);
       const resq = await axios.post(
-        `http://127.0.0.1:4000/api/v1/like/${userId}/${id}/${newLikesCount}`
+        `http://127.0.0.1:4000/api/v1/like/${userId}/${id}/${newLikesCount}/${newDisLikeCount}`
       );
+      console.log(resq);
       if (resq.data.message === "liked") {
+        // console.log()
         setLikesCount(newLikesCount);
+        setDisLikesCount(newDisLikeCount);
       }
     } catch (error) {
-      console.error("Error while liking:", error);
+      console.error(error);
     }
   };
 
-  const DisLikeButton = () => {
-    if (likecolor.length > 0) {
-      setLikecolor("");
-      setLikesCount(likesCount - 1);
-    }
-    if (dislikecolor === "") {
-      setDisLikecolor("red");
-    } else {
-      setDisLikecolor("");
+  const DisLikeButton = async () => {
+    try {
+      let newDislikesCount = dislikesCount;
+      let newLikesCount = likesCount;
+      if (likecolor.length > 0) {
+        setLikecolor("");
+        // setLikesCount(likesCount - 1);
+        newLikesCount -= 1;
+        // newDislikesCount += 1;
+        setDisLikecolor("red");
+      }
+      if (dislikecolor === "") {
+        newDislikesCount += 1;
+        setDisLikecolor("red");
+      } else {
+        newDislikesCount -= 1;
+        setDisLikecolor("");
+      }
+      setDisLikesCount(newDislikesCount);
+      setLikesCount(newLikesCount);
+      const resq = await axios.post(
+        `http://127.0.0.1:4000/api/v1/like/${userId}/${id}/${newLikesCount}/${newDislikesCount}`
+      );
+      if (resq.data.message === "liked") {
+        setDisLikesCount(newDislikesCount);
+        setLikesCount(newLikesCount);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -65,9 +96,11 @@ const CommentModal = ({
             <h1>{username}</h1>
             <p className="text-slate-400">{comment}</p>
             <div className="flex items-center gap-5">
-              <div className="cursor-pointer flex items-center gap-1">
+              <div
+                className="cursor-pointer flex items-center gap-1"
+                onClick={LikeButton}
+              >
                 <AiOutlineLike
-                  onClick={LikeButton}
                   className="overflow-hidden rounded-lg"
                   size={17}
                   color={likecolor}
@@ -76,14 +109,13 @@ const CommentModal = ({
                   {likesCount === 0 ? "" : likesCount}
                 </p>
               </div>
-              <div className="cursor-pointer flex items-center">
-                <AiOutlineDislike
-                  onClick={DisLikeButton}
-                  size={17}
-                  color={dislikecolor}
-                />
+              <div
+                className="cursor-pointer flex items-center"
+                onClick={DisLikeButton}
+              >
+                <AiOutlineDislike size={17} color={dislikecolor} />
                 <p className="text-[14px] overflow-hidden">
-                  {dislikes === 0 ? "" : dislikes}
+                  {dislikesCount === 0 ? "" : dislikesCount}
                 </p>
               </div>
               <div className="flex items-center gap-1 cursor-pointer">
