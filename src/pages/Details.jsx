@@ -81,6 +81,7 @@ const Details = ({ setProgress }) => {
               updatedAt,
               releaseDate,
               nextAiringEpisode,
+              type,
             } = dat;
             return (
               <>
@@ -113,7 +114,7 @@ const Details = ({ setProgress }) => {
                         <div className="flex gap-5">
                           <p className="flex items-center gap-1 text-[14px]">
                             <AiFillPlayCircle />
-                            {format}
+                            {type}
                           </p>
                           <p className="flex items-center gap-1 text-[14px]">
                             <BiSolidTimeFive />

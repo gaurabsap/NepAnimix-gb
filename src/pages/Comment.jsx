@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CommentModel } from "../../../backend/model/commentSchema";
 import CommentModal from "./CommentModal";
-
+// import load from "../assets/load.gif";
 const Comment = ({ id }) => {
   const [data, setData] = useState([]);
   const [usercomment, setUserComment] = useState("");
@@ -62,7 +62,7 @@ const Comment = ({ id }) => {
         <h1 className="text-gray-400 text-2xl ml-3">Comment Section</h1>
         <div className="flex flex-col gap-5 items-start p-3">
           <textarea
-            className="p-4 w-[70%] h-[100px] max-h-[180px] bg-slate-700 outline-0"
+            className="p-4 w-[70%] h-[100px] max-h-[180px] bg-slate-700 outline-0 rounded-lg"
             name="comment"
             value={usercomment}
             placeholder="Add your comment here..."
@@ -102,12 +102,14 @@ const Comment = ({ id }) => {
                     replies={replies}
                     dislikes={dislike}
                     userId={userId}
+
                     // datas={data}
                   />{" "}
                 </>
               );
             })
           ) : (
+            // <img className="w-[30px]" src={load} alt="loading" />
             <h1>No comment yet</h1>
           )}
         </div>

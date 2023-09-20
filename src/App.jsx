@@ -15,33 +15,36 @@ import { AnimeVideo } from "./pages/context/AnimeContext";
 import Schedule from "./pages/Schedule";
 import { Scedule } from "./pages/context/Scedule";
 import { Auth } from "./pages/auth/authContext";
+import { AddReact } from "./pages/context/React";
 
 function App() {
   return (
     <>
-      <Auth>
-        <Scedule>
-          <ContextApi>
-            <AnimeVideo>
-              <div className="flex flex-col">
-                <BrowserRouter>
-                  {/* <Nav /> */}
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/details/:id" element={<Details />} />
-                    <Route path="/anime/:id" element={<AdWatch />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/genre/:id" element={<Genre />} />
-                    <Route path="/watch/:id" element={<Watch />} />
-                    <Route path="/scedule" element={<Schedule />} />
-                  </Routes>
-                  {/* <Popular /> */}
-                </BrowserRouter>
-              </div>
-            </AnimeVideo>
-          </ContextApi>
-        </Scedule>
-      </Auth>
+      <AddReact>
+        <Auth>
+          <Scedule>
+            <ContextApi>
+              <AnimeVideo>
+                <div className="flex flex-col">
+                  <BrowserRouter>
+                    {/* <Nav /> */}
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/details/:id" element={<Details />} />
+                      <Route path="/anime/:id" element={<AdWatch />} />
+                      <Route path="/search" element={<Search />} />
+                      <Route path="/genre/:id" element={<Genre />} />
+                      <Route path="/watch/:id" element={<Watch />} />
+                      <Route path="/scedule" element={<Schedule />} />
+                    </Routes>
+                    {/* <Popular /> */}
+                  </BrowserRouter>
+                </div>
+              </AnimeVideo>
+            </ContextApi>
+          </Scedule>
+        </Auth>
+      </AddReact>
     </>
   );
 }
