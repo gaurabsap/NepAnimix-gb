@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { CommentModel } from "../../../backend/model/commentSchema";
 import CommentModal from "./CommentModal";
 // import load from "../assets/load.gif";
 const Comment = ({ id }) => {
