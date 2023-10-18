@@ -5,6 +5,7 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { LuReply } from "react-icons/lu";
 import { ReactContext } from "./context/React";
 import { BsXLg } from "react-icons/bs";
+import CommentModal from "./CommentModal";
 
 const Reply = ({
   comment,
@@ -18,7 +19,7 @@ const Reply = ({
   userId,
   reaply,
 }) => {
-  //   const { replysdata, setReplysData } = useContext(ReactContext);
+  const { replysdata, setReplysData } = useContext(ReactContext);
   //   console.log(replysdata);
   console.log("The likes is " + dislikes);
   const [likecolor, setLikecolor] = useState("");
@@ -122,6 +123,8 @@ const Reply = ({
 
     setHideReply(false);
     setShowReply(false);
+    setNewReplyData(resq.data.message.replies);
+    setReplysData(resq.data.message.replies);
   };
   console.log(newReplyData);
   return (
@@ -217,14 +220,37 @@ const Reply = ({
               ) : (
                 ""
               )}
-              {/* {replies.length > 0 ? (
-                <h1 className="text-yellow-700 mt-2 flex items-center cursor-pointer">
-                  <AiOutlineDown />
-                  Hide {replies.length} replies
-                </h1>
+              {replies.length > 0 ? (
+                <div>
+                  <h1 className="text-yellow-700 mt-2 flex items-center cursor-pointer">
+                    <AiOutlineDown />
+                    Hide {replies.length} replies
+                  </h1>
+                  {!hidereply
+                    ? (replysdata.length > 0 ? replysdata : replies).map(
+                        (reply) => {
+                          return (
+                            <Reply
+                              key={reply._id} // Add a unique key to each reply
+                              id={reply._id}
+                              reply={reply.comment}
+                              likes={reply.likes}
+                              dislikes={reply.dislike}
+                              username={reply.username}
+                              userId={reply.userId}
+                              comment={reply.comment}
+                              photo={reply.photo}
+                              reaply={newReplyData}
+                              replies={replies}
+                            />
+                          );
+                        }
+                      )
+                    : ""}
+                </div>
               ) : (
                 ""
-              )} */}
+              )}
             </div>
           </div>
         </div>

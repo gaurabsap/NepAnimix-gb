@@ -120,6 +120,7 @@ const CommentModal = ({
     setShowReply(false);
   };
   console.log(newReplyData);
+  const data = replysdata || replies;
   return (
     <>
       <div className="flex flex-col gap-4 ">
@@ -196,31 +197,35 @@ const CommentModal = ({
             ) : (
               ""
             )}
-            {replies.length > 0 ? (
+            {replies.length > 0 || replysdata.length > 0 ? (
               <div>
                 <h1
                   onClick={() => setHideReply(!hidereply)}
                   className="text-yellow-700 mt-2 flex items-center cursor-pointer"
                 >
                   <AiOutlineDown />
-                  Hide {replies.length} replies
+                  Hide {replies.length + replysdata.length} replies
                 </h1>
                 {!hidereply
-                  ? replies.map((reply) => {
-                      return (
-                        <Reply
-                          id={reply._id}
-                          reply={reply.comment}
-                          likes={reply.likes}
-                          dislikes={reply.dislike}
-                          username={reply.username}
-                          userId={reply.userId}
-                          comment={reply.comment}
-                          photo={reply.photo}
-                          reaply={newReplyData}
-                        />
-                      );
-                    })
+                  ? (replysdata.length > 0 ? replysdata : replies).map(
+                      (reply) => {
+                        return (
+                          <Reply
+                            key={reply._id} // Add a unique key to each reply
+                            id={reply._id}
+                            reply={reply.comment}
+                            likes={reply.likes}
+                            dislikes={reply.dislike}
+                            username={reply.username}
+                            userId={reply.userId}
+                            comment={reply.comment}
+                            photo={reply.photo}
+                            reaply={newReplyData}
+                            replies={replies}
+                          />
+                        );
+                      }
+                    )
                   : ""}
               </div>
             ) : (

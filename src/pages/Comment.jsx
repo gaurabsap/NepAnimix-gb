@@ -59,7 +59,7 @@ const Comment = ({ id }) => {
   return (
     <>
       <div className="p-4">
-        <h1 className="text-gray-400 text-2xl ml-3">Comment Section</h1>
+        <h1 className="text-gray-400 text-2xl ml-3">Comment Section.</h1>
         <div className="flex flex-col gap-5 items-start p-3">
           <textarea
             className="p-4 w-[70%] h-[100px] max-h-[180px] bg-slate-700 outline-0 rounded-lg"
