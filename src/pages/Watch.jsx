@@ -61,7 +61,7 @@ const Watch = () => {
   useEffect(() => {
     setLoad(true);
     if (data.length > 0) {
-      console.log(data[0]?.episodes[0].image);
+      // console.log(data[0]?.episodes[0].image);
       setImages(data[0]?.episodes[0]?.image);
       setId(data[0]?.episodes[0]?.id);
       // console.log(data[0]?.episodes[0]?.sources[0].target);
@@ -101,6 +101,7 @@ const Watch = () => {
                       >
                         {episodes.length > 0 ? (
                           episodes.map((dat, i) => {
+                            console.log(dat);
                             const { number, sources, title, image, id } = dat;
                             return (
                               <div
@@ -161,7 +162,7 @@ const Watch = () => {
                           <div className="w-full h-full">
                             <img
                               className={`w-full h-full object-cover opacity-25 {video ? "hidden" : "flex"}`}
-                              src={images}
+                              src={images && images}
                               alt="photo"
                             />
                             {!load ? (
@@ -202,7 +203,7 @@ const Watch = () => {
                                   },
                                   { url: dat.sources[4].url, quality: "Auto" },
                                 ]}
-                                photo={images}
+                                photo={images && images}
                               />
                               //   <h1>hi</h1>
                             );
