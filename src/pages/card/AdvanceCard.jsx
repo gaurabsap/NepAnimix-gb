@@ -74,7 +74,13 @@ const AdvanceCard = ({ data, load }) => {
                   <div className="w-full flex flex-col gap-2 h-[30%] p-2 bg-blue-800 radius">
                     <div>
                       <h1 className="truncate font-bold lg:text-[15px] text-[12px]">
-                        {title.english ? title.english : "No name"}
+                        {title.english
+                          ? title.english
+                          : title.romanji
+                          ? title.romanji
+                          : title.userPreferred
+                          ? title.userPreferred
+                          : "no name"}
                       </h1>
                     </div>
                     <div className="flex items-end gap-2">
